@@ -1,0 +1,13 @@
+node_modules
+jspm_packages
+uploads
+bower_components
+uploads
+public/bower_components
+public/images
+public/uploads
+pictures/
+assets/bower_components
+# Optional npm cache directory
+.npm
+npm-debug.log

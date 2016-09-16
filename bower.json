@@ -1,0 +1,30 @@
+{
+  "name": "howdy-web",
+  "description": "Howdy Website",
+  "main": "server.js",
+  "authors": [
+    "Desmond Korir <deskip95@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/bower_components",
+    "test",
+    "tests",
+    "uploads"
+  ],
+  "dependencies": {
+    "fastclick": ">=0.6.11",
+    "font-awesome": "~4.6.3",
+    "bootstrap": "^3.3.7",
+    "jquery-legacy": "jquery#2.0.0",
+    "jquery.cookie": "^1.4.1",
+    "jquery.placeholder": "^0.2.4",
+    "cropit": "^0.5.1",
+    "jquery-ui": "^1.12.0",
+    "simple-line-icons": "^2.3.2"
+  }
+}
