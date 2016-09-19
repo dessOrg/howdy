@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="image/favicon.png" rel="icon" />
+  <title>Howdys market</title>
+  <meta name="description" content="Responsive and clean html template design for any kind of ecommerce webshop">
+  <!-- CSS Part Start-->
+  <% include ../partials/bootstrap %>
+  <!-- CSS Part End-->
+</head>
+<body>
+<div class="wrapper-wide">
+  <div id="header">
+    <!-- Top Bar Start-->
+    <% include ../partials/top %>
+    <!-- Top Bar End-->
+    <!-- Header Start-->
+    <% include ../partials/logo-section %>
+    <!-- Header End-->
+    <!-- Main Menu Start-->
+    <% include ../partials/admin-header %>
+    <!-- Main Menu End-->
+  </div>
+
+  <div class="row">
+
+    <div id="content" class="col-lg-offset-1 col-lg-9">
+
+<div class="tab">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#admin">ADMINS</a></li>
+    <li><a data-toggle="tab" href="#cust">CUSTOMERS</a></li>
+
+  </ul>
+
+  <div class="tab-content">
+    <div id="admin" class="tab-pane fade in active">
+      <h1 class="title">Admins</h1>
+      <table class="table">
+      <thead>
+        <tr>
+  <th>FNAME</th>
+  <th>LNAME</th>
+  <th>ROLE</th>
+  <th>ACTION</th>
+  </tr>
+      </thead>
+      <tbody>
+        <tr>
+      <td><input class="form-control" placeholder="fname"></td>
+      <td><input class="form-control" placeholder="lname"></td>
+      <td><input class="form-control" placeholder="role"></td>
+      <td><button class="btn btn-success" ng-click="addContact()">Add Admin</td>
+      <td><button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button> </td>
+
+        </tr>
+      <tr >
+      <td>Mitch</td>
+      <td>Ser</td>
+      <td>Super Admin</td>
+      <td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</td>
+      <td><button class="btn btn-warning" ng-click="edit(x._id)">Edit</td>
+
+      </tr>
+      <tr >
+      <td>Arnold</td>
+      <td>Swarch</td>
+      <td>Admin</td>
+      <td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</td>
+      <td><button class="btn btn-warning" ng-click="edit(x._id)">Edit</td>
+
+      </tr>
+      </tbody>
+      </table>
+    </div>
+    <div id="cust" class="tab-pane fade">
+      <h1 class="title">Customers</h1>
+      <table class="table">
+      <thead>
+        <tr>
+  <th>FNAME</th>
+  <th>LNAME</th>
+  <th>RESIDENCE</th>
+  <th>ACTION</th>
+  </tr>
+      </thead>
+      <tbody>
+      <tr >
+      <td>Mitch</td>
+      <td>Ser</td>
+      <td>tUDOR</td>
+      <td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</td>
+      
+      </tr>
+      <tr >
+      <td>Arnold</td>
+      <td>Swarch</td>
+      <td>NYALI</td>
+      <td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</td>
+
+      </tr>
+      </tbody>
+    </table>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Some content in menu 2.</p>
+    </div>
+  </div>
+
+</div>
+
+
+  </div>
+</div>
+
+
+  <!--Footer Start-->
+<% include ../partials/footer %>
+  <!-- Custom Side Block End -->
+</div>
+<!-- JS Part Start-->
+<% include ../partials/footer-script %>
+<!-- JS Part End-->
+</body>
+</html>

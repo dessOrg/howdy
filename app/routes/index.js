@@ -44,4 +44,12 @@ app.get('/contact', function(req, res){
   res.render('pages/contact.ejs');
 });
 
+app.get('/dashboard', function(req, res){
+  res.render('admin/dashboard.ejs');
+});
+
+app.get('/add-item', function(req, res){
+  res.render('admin/add-item.ejs');
+});
+
 };
