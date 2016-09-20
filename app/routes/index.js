@@ -52,4 +52,8 @@ app.get('/add-item', function(req, res){
   res.render('admin/add-item.ejs');
 });
 
+app.get('/admin-vegetables', function(req, res){
+  res.render('admin/admin-vegetables.ejs');
+});
+
 };
