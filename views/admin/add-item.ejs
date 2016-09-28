@@ -40,14 +40,6 @@
               <div class="row">
                   <div class="col-lg-6">
 
-                      <div class="control-group">
-                          <label for="itemId" class="control-label">Id:</label>
-
-                          <div class="controls">
-                              <input id="itemId" name="id" type="text" value=""
-                                     disabled/>
-                          </div>
-                      </div>
 
                       <div class="control-group">
                           <label for="name" class="control-label">Name:</label>
@@ -84,8 +76,13 @@
                           </div>
                       </div>
 
+                      <div class="control-group">
+                          <label for="prev-price" class="control-label">Previous Price:</label>
 
-
+                          <div class="controls">
+                              <input id="prev-price" name="prev-price" type="text" value=""/>
+                          </div>
+                      </div>
 
 
                       <div class="control-group">
@@ -99,10 +96,13 @@
                   </div>
 
                   <div class="col-lg-6">
-                      <div class="well" style="width: 180px;text-align: center;width:50%;margin: 0px auto;">
-                          <p><img id="picture" width="180" src=""/></p>
-                          <p style="color:#999;">To change the picture, drag a new picture from your file system onto the box above.</p>
-                      </div>
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+  <div>
+    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+  </div>
+</div>
                   </div>
 
               </div>
@@ -121,7 +121,7 @@
   <div class="row-fluid status-bar">
       <div class="span12">
           <div class="alert alert-success" style="display: none">
-              <b>Success!</b> Wine saved successfully
+              <b>Success!</b> Item saved successfully
           </div>
       </div>
   </div>

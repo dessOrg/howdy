@@ -56,4 +56,20 @@ app.get('/admin-vegetables', function(req, res){
   res.render('admin/admin-vegetables.ejs');
 });
 
+app.get('/admin-fruits', function(req, res){
+  res.render('admin/admin-fruits.ejs');
+});
+
+app.get('/admin-kitchen', function(req, res){
+  res.render('admin/admin-kitchen.ejs');
+});
+
+app.get('/admin-staples', function(req, res){
+  res.render('admin/admin-staples.ejs');
+});
+
+app.get('/admin-pcare', function(req, res){
+  res.render('admin/admin-pcare.ejs');
+});
+
 };
