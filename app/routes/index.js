@@ -1,11 +1,12 @@
-var express = require('express');
-var app = express();
+var productRoutes = require('./products');
 
+var express = require('express');
+var router = express.Router();
 
 module.exports = function(app){
 
 app.get('/', function(req, res){
-  res.render('pages/index.ejs')
+  res.render('pages/index')
 });
 
 app.get('/vegetables', function(req, res){
@@ -71,5 +72,8 @@ app.get('/admin-staples', function(req, res){
 app.get('/admin-pcare', function(req, res){
   res.render('admin/admin-pcare.ejs');
 });
+
+//Create new product Item
+app.post('/create', productRoutes.create);
 
 };

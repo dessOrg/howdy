@@ -9,16 +9,19 @@ var productSchema = mongoose.Schema({
   category : {
     type :  String
   },
-  sub-category : {
+  subCategory : {
     type : String
   },
-  price {
-    type : Double
+  price  : {
+    type : String
   },
-  prev-price : {
-    type : Double
+  prevPrice : {
+    type : String
   },
   note : {
+    type : String
+  },
+  picture : {
     type : String
   }
 });

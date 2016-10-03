@@ -1,0 +1,32 @@
+.cropit-preview {
+  background-color: #f8f8f8;
+  background-size: cover;
+  border: 1px solid #ccc;
+  margin-top: 7px;
+  width: 230px;
+  height: 230px;
+}
+
+.cropit-preview-image-container {
+  cursor: move;
+}
+
+.image-size-label {
+  margin-top: 10px;
+}
+
+input {
+  display: block;
+}
+#result {
+  margin-top: 10px;
+  width: 900px;
+}
+
+#result-data {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}

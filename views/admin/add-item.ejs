@@ -1,142 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link href="image/favicon.png" rel="icon" />
-  <title>Contact Us</title>
-  <meta name="description" content="Responsive and clean html template design for any kind of ecommerce webshop">
-  <!-- CSS Part Start-->
-  <% include ../partials/bootstrap %>
-  <!-- CSS Part End-->
-</head>
-<body>
-<div class="wrapper-wide">
-  <div id="header">
-    <!-- Top Bar Start-->
-    <% include ../partials/top %>
-    <!-- Top Bar End-->
-    <!-- Header Start-->
-    <% include ../partials/logo-section %>
-    <!-- Header End-->
-    <!-- Main Menu Start-->
-    <% include ../partials/admin-header %>
-    <!-- Main Menu End-->
-  </div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Swahili Box </title>
+  <link rel="stylesheet" href="/bower_components/foundation/css/normalize.min.css" media="all" />
+    <script src="bower_components/foundation/js/vendor/modernizr.js"></script>
+    <!-- load fontawesome -->
+  <link rel="stylesheet" href="/bower_components/lato/css/lato.css" media="all" />
+  <link rel="stylesheet" href="/bower_components/simple-line-icons/css/simple-line-icons.css" media="all" />
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" media="all" />
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.min.css" media="all" />
+    <link rel="stylesheet" href="/css/dashboard.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/css/cropit.css" media="all"  type="text/css" />
+    <script src="bower_components/jquery-legacy/jquery.min.js"></script>
+    <script src="bower_components/cropit/dist/jquery.cropit.js"></script>
+  </head>
+  <body>
 
-<div class="row">
-<div class="col-lg-offset-2 col-lg-8">
-
-  <div class="row-fluid">
-
-      <form class="form-horizontal span12">
-
-          <fieldset>
-
-              <legend>Item Details</legend>
-              <br/>
-
-              <div class="row">
-                  <div class="col-lg-6">
-
-
-                      <div class="control-group">
-                          <label for="name" class="control-label">Name:</label>
-
-                          <div class="controls">
-                              <input type="text" id="name" name="name" value=""/>
-                              <span class="help-inline"></span>
-                          </div>
-                      </div>
-
-                      <div class="control-group">
-                          <label for="category" class="control-label">Category:</label>
-
-                          <div class="controls">
-                              <input type="text" id="category" name="category" value=""/>
-                              <span class="help-inline"></span>
-                          </div>
-                      </div>
-
-                      <div class="control-group">
-                          <label for="sub" class="control-label">Sub-Category:</label>
-
-                          <div class="controls">
-                              <input type="text" id="sub" name="sub" value=""/>
-                          </div>
-                      </div>
-
-                      <div class="control-group">
-                          <label for="price" class="control-label">Price:</label>
-
-                          <div class="controls">
-                              <input type="text" id="country" name="price" value=""/>
-                              <span class="help-inline"></span>
-                          </div>
-                      </div>
-
-                      <div class="control-group">
-                          <label for="prev-price" class="control-label">Previous Price:</label>
-
-                          <div class="controls">
-                              <input id="prev-price" name="prev-price" type="text" value=""/>
-                          </div>
-                      </div>
-
-
-                      <div class="control-group">
-                          <label for="description" class="control-label">Notes:</label>
-
-                          <div class="controls">
-                              <textarea id="description" name="description" style="width: 90%;" rows="6"></textarea>
-                          </div>
-                      </div>
-
-                  </div>
-
-                  <div class="col-lg-6">
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-  <div>
-    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
-    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-  </div>
-</div>
-                  </div>
-
-              </div>
-
-          </fieldset>
-
-          <div class="form-actions">
-              <a href="#" class="btn btn-primary save">Save</a>
-              <a href="#" class="btn delete">Delete</a>
+    <form action="/projects" method="post" enctype="multipart/form-data">
+        <div class="row">
+          <div class="small-3 columns">
+            <label>Product Name </label>
           </div>
+          <div class="small-9 columns">
+            <input type="text" name="name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-3 columns">
+            <label>Category </label>
+          </div>
+          <div class="small-9 columns">
+            <input type="text" name="category">
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-3 columns">
+              <label>Sub Category </label>
+            </div>
+            <div class="small-9 columns">
+              <input type="text" name="subCategory">
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-3 columns">
+                <label>Current Price </label>
+              </div>
+              <div class="small-9 columns">
+                <input type="text" name="price">
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-3 columns">
+                  <label>Prev Price </label>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" name="prevPrice">
+                </div>
+              </div>
+        <div class="row">
+          <div class="medium-3 columns">
+            <label>Product description </label>
+          </div>
+          <div class="small-9 columns">
+            <input type="text" name="note">
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="image-editor">
+          <div class="small-3 columns">
+            <label for="exampleFileUpload" class="button small">Upload File</label>
+          </div>
+          <div class="small-9 columns">
+            <input type="file" name="image" id="exampleFileUpload" class="hide-for-sr cropit-image-input">
+          </div>
+          <div class="cropit-preview"></div>
+            <div class="image-size-label"> Resize image </div>
+            <input type="range" class="cropit-image-zoom-input">
+            <input type="hidden" name="imagedata" class="hidden-image-data" />
+            <button class="rotate-ccw" onclick="return false;"><i class="fa fa-repeat" aria-hidden="true"></i><button>
+            <button class="rotate-cw" onclick="return false;"><i class="fa fa-undo" aria-hidden="true"></i></button>
+            <button id="crop" class="btn btn-secondary danger" onclick="return false;">crop</button>
+
+        </div>
+            <div class="row">
+          <div class="small-2 small-offset-3 columns">
+            <input type="submit" class="button radius success" value="Add project" name="submit">
+          </div>
+        </div>
+        </div>
       </form>
 
-  </div>
 
-  <div class="row-fluid status-bar">
-      <div class="span12">
-          <div class="alert alert-success" style="display: none">
-              <b>Success!</b> Item saved successfully
-          </div>
-      </div>
-  </div>
+      <script>
+          $(function() {
 
-</div>
+            $('.image-editor').cropit();
 
-</div>
+            $('.rotate-cw').click(function() {
+              $('.image-editor').cropit('rotateCW');
+            });
+            $('.rotate-ccw').click(function() {
+              $('.image-editor').cropit('rotateCCW');
+            });
+
+            $('#crop').click(function() {
+              // Move cropped image data to hidden input
+              var imageData = $('.image-editor').cropit('export');
+              $('.hidden-image-data').val(imageData);
+
+              // Prevent the form from actually submitting
+              return false;
+            });
+            $('#submit').submit();
+          });
+        </script>
 
 
-  <!--Footer Start-->
-<% include ../partials/footer %>
-  <!-- Custom Side Block End -->
-</div>
-<!-- JS Part Start-->
-<% include ../partials/footer-script %>
-<!-- JS Part End-->
-</body>
-</html>
+
+  <%  include ../partials/dashboard-scripts %>
+  </body>
+  </html>

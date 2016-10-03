@@ -7,7 +7,7 @@
 ===================================================================================
  Table of Contents
 ===================================================================================
- 
+
 1. General Styles
 2.  Layout
 3.  Header
@@ -25,7 +25,7 @@
      7.4. Grid Product
      7.5. List Product
      7.6. Rating Star
-     7.7. Pagination 
+     7.7. Pagination
 8.  Product Page
 9.  Product Item for Left and Right Panel
 10. Category Accordion
@@ -1956,6 +1956,17 @@ h4.panel-title { padding:0 }
 	margin: 5px 0 5px 17px;
 	padding: 0;
 	list-style: decimal outside;
+}
+.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar .file-input {
+    display: table-cell;
+    max-width: 220px;
 }
 /*===================================================================================*/
 /*  20. Extra
