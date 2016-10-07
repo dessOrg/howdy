@@ -1,4 +1,3 @@
-var productRoutes = require('./products');
 
 var express = require('express');
 var router = express.Router();
@@ -9,7 +8,7 @@ app.get('/', function(req, res){
   res.render('pages/index')
 });
 
-app.get('/vegetables', function(req, res){
+app.get('/vegetable', function(req, res){
   res.render('pages/vegetables.ejs');
 });
 
@@ -73,7 +72,5 @@ app.get('/admin-pcare', function(req, res){
   res.render('admin/admin-pcare.ejs');
 });
 
-//Create new product Item
-app.post('/create', productRoutes.create);
 
 };

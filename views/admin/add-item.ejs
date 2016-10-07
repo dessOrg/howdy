@@ -1,125 +1,98 @@
 <!doctype html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Swahili Box </title>
-  <link rel="stylesheet" href="/bower_components/foundation/css/normalize.min.css" media="all" />
-    <script src="bower_components/foundation/js/vendor/modernizr.js"></script>
-    <!-- load fontawesome -->
-  <link rel="stylesheet" href="/bower_components/lato/css/lato.css" media="all" />
-  <link rel="stylesheet" href="/bower_components/simple-line-icons/css/simple-line-icons.css" media="all" />
-  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" media="all" />
-    <link rel="stylesheet" href="bower_components/foundation/css/foundation.min.css" media="all" />
-    <link rel="stylesheet" href="/css/dashboard.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/css/cropit.css" media="all"  type="text/css" />
-    <script src="bower_components/jquery-legacy/jquery.min.js"></script>
-    <script src="bower_components/cropit/dist/jquery.cropit.js"></script>
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="image/favicon.png" rel="icon" />
+  <title>HOWDYS</title>
+  <meta name="description" content="Responsive and clean html template design for any kind of ecommerce webshop">
+  <!-- CSS Part Start-->
+  <% include ../partials/bootstrap %>
+  <!-- CSS Part End-->
   <body>
-
-    <form action="/projects" method="post" enctype="multipart/form-data">
+<div class="wrapper-wide">
+  <div id="header">
+    <!-- Top Bar Start-->
+    <% include ../partials/top %>
+    <!-- Top Bar End-->
+    <!-- Header Start-->
+    <% include ../partials/logo-section %>
+    <!-- Header End-->
+    <!-- Main Menu Start-->
+    <% include ../partials/admin-header %>
+    <!-- Main Menu End-->
+  </div>
+<br>
+<div class="row">
+  <div class="col-lg-offset-1 col-lg-10">
+    <form action="/uploads"  method="POST" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-lg-6">
         <div class="row">
-          <div class="small-3 columns">
-            <label>Product Name </label>
+          <div class="col-lg-3">
+            <h5>Product Name </h5>
           </div>
-          <div class="small-9 columns">
+          <div class="col-lg-9">
             <input type="text" name="name">
           </div>
         </div>
         <div class="row">
-          <div class="small-3 columns">
-            <label>Category </label>
+          <div class="col-lg-3">
+            <h5>Category </h5>
           </div>
-          <div class="small-9 columns">
+          <div class="col-lg-9">
             <input type="text" name="category">
           </div>
         </div>
         <div class="row">
-          <div class="small-3 columns">
-              <label>Sub Category </label>
+          <div class="col-lg-3">
+              <h5>Sub Category </h5>
             </div>
-            <div class="small-9 columns">
+            <div class="col-lg-9 ">
               <input type="text" name="subCategory">
             </div>
           </div>
           <div class="row">
-            <div class="small-3 columns">
-                <label>Current Price </label>
+            <div class="col-lg-3">
+                <h5>Current Price </h5>
               </div>
-              <div class="small-9 columns">
+              <div class="col-lg-9 ">
                 <input type="text" name="price">
               </div>
             </div>
             <div class="row">
-              <div class="small-3 columns">
-                  <label>Prev Price </label>
+              <div class="col-lg-3 ">
+                  <h5>Prev Price </h5>
                 </div>
-                <div class="small-9 columns">
+                <div class="col-lg-9">
                   <input type="text" name="prevPrice">
                 </div>
               </div>
         <div class="row">
-          <div class="medium-3 columns">
-            <label>Product description </label>
+          <div class="col-lg-3">
+            <h5>Product description </h5>
           </div>
-          <div class="small-9 columns">
+          <div class="col-lg-9">
             <input type="text" name="note">
           </div>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="image-editor">
-          <div class="small-3 columns">
-            <label for="exampleFileUpload" class="button small">Upload File</label>
-          </div>
-          <div class="small-9 columns">
-            <input type="file" name="image" id="exampleFileUpload" class="hide-for-sr cropit-image-input">
-          </div>
-          <div class="cropit-preview"></div>
-            <div class="image-size-label"> Resize image </div>
-            <input type="range" class="cropit-image-zoom-input">
-            <input type="hidden" name="imagedata" class="hidden-image-data" />
-            <button class="rotate-ccw" onclick="return false;"><i class="fa fa-repeat" aria-hidden="true"></i><button>
-            <button class="rotate-cw" onclick="return false;"><i class="fa fa-undo" aria-hidden="true"></i></button>
-            <button id="crop" class="btn btn-secondary danger" onclick="return false;">crop</button>
+<div class="col-lg-6">
+  Select an image to upload:
+    <input type="file" name="image">
 
-        </div>
-            <div class="row">
-          <div class="small-2 small-offset-3 columns">
-            <input type="submit" class="button radius success" value="Add project" name="submit">
-          </div>
-        </div>
-        </div>
+
+      </div>
+    </div>
+    <input class="btn btn-success" type="submit" value="Save">
       </form>
-
-
-      <script>
-          $(function() {
-
-            $('.image-editor').cropit();
-
-            $('.rotate-cw').click(function() {
-              $('.image-editor').cropit('rotateCW');
-            });
-            $('.rotate-ccw').click(function() {
-              $('.image-editor').cropit('rotateCCW');
-            });
-
-            $('#crop').click(function() {
-              // Move cropped image data to hidden input
-              var imageData = $('.image-editor').cropit('export');
-              $('.hidden-image-data').val(imageData);
-
-              // Prevent the form from actually submitting
-              return false;
-            });
-            $('#submit').submit();
-          });
-        </script>
-
-
-
-  <%  include ../partials/dashboard-scripts %>
+</div>
+</div>
+</div>
+              <!-- JS Part Start-->
+        <% include ../partials/footer-script %>
+        <!-- JS Part End-->
   </body>
   </html>
