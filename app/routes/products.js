@@ -14,17 +14,7 @@ var upload = multer({ dest: 'uploads/' });
 
 module.exports = function(app) {
 
-  app.get('/vegetables', function(req,res){
-      Product.find(function(err, products){
-        if(err) return err;
-        console.log(products);
-
-      res.render('pages/vegetables.ejs',{
-        products:products,
-        page:'vegetables'
-        });
-      });
-    });
+  
     app.get('/all',function(req, res) {
         Product.find(function(err, products) {
             if (err)
@@ -61,7 +51,7 @@ module.exports = function(app) {
         product.subCategory=subCategory;
         product.price=price;
         product.prevPrice=prevPrice;
-        product.picture=tmp_path;
+        product.picture=target_path;
         product.note=note;
 
       product.save(function(err, product){

@@ -1,6 +1,7 @@
 
 var express = require('express');
 var router = express.Router();
+var Product = require('../models/products');
 
 module.exports = function(app){
 
@@ -8,20 +9,52 @@ app.get('/', function(req, res){
   res.render('pages/index')
 });
 
-app.get('/vegetable', function(req, res){
-  res.render('pages/vegetables.ejs');
-});
+app.get('/vegetables', function(req,res){
+    Product.find({category:"vegetables"},function(err, products){
+      if(err) return err;
+      console.log(products);
+
+    res.render('pages/vegetables.ejs',{
+      products:products,
+      page:'vegetables'
+      });
+    });
+  });
 
 app.get('/fruits', function(req, res){
-  res.render('pages/fruits.ejs');
+  Product.find({category:"fruits"},function(err, products){
+    if(err) return err;
+    console.log(products);
+
+  res.render('pages/fruits.ejs',{
+    products:products,
+    page:'fruits'
+    });
+  });
 });
 
 app.get('/kitchen', function(req, res){
-  res.render('pages/kitchen.ejs');
+  Product.find({category:"kitchen"},function(err, products){
+    if(err) return err;
+    console.log(products);
+
+  res.render('pages/kitchen.ejs',{
+    products:products,
+    page:'kitchen'
+    });
+  });
 });
 
 app.get('/staples', function(req, res){
-  res.render('pages/staples.ejs');
+  Product.find({category:"staples"},function(err, products){
+    if(err) return err;
+    console.log(products);
+
+  res.render('pages/staples.ejs',{
+    products:products,
+    page:'staples'
+    });
+  });
 });
 
 app.get('product', function(req, res){
@@ -29,7 +62,15 @@ app.get('product', function(req, res){
 });
 
 app.get('/pcare', function(req, res){
-  res.render('pages/pcare.ejs');
+  Product.find({category:"pcare"},function(err, products){
+    if(err) return err;
+    console.log(products);
+
+  res.render('pages/pcare.ejs',{
+    products:products,
+    page:'pcare'
+    });
+  });
 });
 
 app.get('/login', function(req, res){

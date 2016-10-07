@@ -359,249 +359,32 @@
             </div>
           </div>
           <br />
+
+
+
           <div class="row products-category">
+            <% for(i=0; i<products.length; i++){ %>
             <div class="product-layout product-list col-xs-12">
               <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/macbook_pro_1-200x200.jpg" alt=" Strategies for Acquiring Your Own Laptop " title=" Strategies for Acquiring Your Own Laptop " class="img-responsive" /></a></div>
+                <div class="image"><a href="product.html"><img src="<%= products[i].picture %>" alt=" Strategies for Acquiring Your Own Laptop " title=" Strategies for Acquiring Your Own Laptop " class="img-responsive" /></a></div>
                 <div>
                   <div class="caption">
-                    <h4><a href="product.html"> Strategies for Acquiring Your Own Laptop </a></h4>
-                    <p class="description"> Latest Intel mobile architecture
+                    <h4><a href="product.html"> <%= products[i].name %> </a></h4>
+                    <p class="description"> <%= products[i].note %></p>
+                    <p class="price"> <span class="price-new">$<%= products[i].price %></span> <span class="price-old">$<%= products[i].prevPrice %></span> <span class="saving">-26%</span> <span class="price-tax">Ex Tax: $1,400.00</span> </p>
+                  </div>
+                  <div class="button-group">
+                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
+                    <div class="add-to-links">
+                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
+                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
 
-                      Powered by the most advanced mobile processors from Intel, t..</p>
-                    <p class="price"> <span class="price-new">$1,400.00</span> <span class="price-old">$1,900.00</span> <span class="saving">-26%</span> <span class="price-tax">Ex Tax: $1,400.00</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/nikon_d300_1-200x200.jpg" alt="Digital Camera for Elderly" title="Digital Camera for Elderly" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">Digital Camera for Elderly</a></h4>
-                    <p class="description"> Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines bra..</p>
-                    <p class="price"> <span class="price-new">$92.00</span> <span class="price-old">$98.00</span> <span class="saving">-6%</span> <span class="price-tax">Ex Tax: $75.00</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick="cart.add('31');"><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/FinePix-Long-Zoom-Camera-200x200.jpg" alt="FinePix S8400W Long Zoom Camera" title="FinePix S8400W Long Zoom Camera" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">FinePix S8400W Long Zoom Camera</a></h4>
-                    <p class="description">Product 8
-                      ..</p>
-                    <p class="price"> $122.00 <span class="price-tax">Ex Tax: $100.00</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/ipod_shuffle_1-200x200.jpg" alt="Hp Pavilion G6 2314ax Notebok Laptop" title="Hp Pavilion G6 2314ax Notebok Laptop" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">Hp Pavilion G6 2314ax Notebok Laptop</a></h4>
-                    <p class="description">Born to be worn.
-                      Clip on the worlds most wearable music player and take up to 240 songs with you an..</p>
-                    <p class="price"> $122.00 <span class="price-tax">Ex Tax: $100.00</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/palm_treo_pro_1-200x200.jpg" alt="HTC M7 with Stunning Looks" title="HTC M7 with Stunning Looks" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">HTC M7 with Stunning Looks</a></h4>
-                    <p class="description">Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to busi..</p>
-                    <p class="price"> $337.99 <span class="price-tax">Ex Tax: $279.99</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/macbook_1-200x200.jpg" alt="Ideapad Yoga 13-59341124 Laptop" title="Ideapad Yoga 13-59341124 Laptop" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">Ideapad Yoga 13-59341124 Laptop</a></h4>
-                    <p class="description"> Intel Core 2 Duo processor
-
-                      Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, th..</p>
-                    <p class="price"> $2.00 <span class="price-tax">Ex Tax: $0.00</span> </p>
-                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/iphone_1-200x200.jpg" alt="iPhone5" title="iPhone5" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">iPhone5</a></h4>
-                    <p class="description">iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name o..</p>
-                    <p class="price"> $123.20 <span class="price-tax">Ex Tax: $101.00</span> </p>
-                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/macbook_air_1-200x200.jpg" alt="Laptop Silver black" title="Laptop Silver black" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">Laptop Silver black</a></h4>
-                    <p class="description">MacBook Air is ultrathin, ultraportable, and ultra unlike anything else. But you don’t lose inches a..</p>
-                    <p class="price"> <span class="price-new">$1,142.00</span> <span class="price-old">$1,202.00</span> <span class="saving">-5%</span> <span class="price-tax">Ex Tax: $950.00</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/ipod_nano_1-200x200.jpg" alt="Mp3 Player" title="Mp3 Player" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">Mp3 Player</a></h4>
-                    <p class="description"> Video in your pocket.
-
-                      Its the small iPod with one very big idea: video. The worlds most popular..</p>
-                    <p class="price"> $122.00 <span class="price-tax">Ex Tax: $100.00</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/ipod_classic_1-200x200.jpg" alt="Portable Mp3 Player" title="Portable Mp3 Player" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">Portable Mp3 Player</a></h4>
-                    <p class="description"> More room to move.
-
-                      With 80GB or 160GB of storage and up to 40 hours of battery life, the new ..</p>
-                    <p class="price"> $122.00 <span class="price-tax">Ex Tax: $100.00</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/ipod_touch_1-200x200.jpg" alt="Samsung Galaxy S4" title="Samsung Galaxy S4" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">Samsung Galaxy S4</a></h4>
-                    <p class="description">Revolutionary multi-touch interface.
-                      iPod touch features the same multi-touch screen technology as ..</p>
-                    <p class="price"> <span class="price-new">$62.00</span> <span class="price-old">$122.00</span> <span class="saving">-50%</span> <span class="price-tax">Ex Tax: $50.00</span> </p>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-layout product-list col-xs-12">
-              <div class="product-thumb">
-                <div class="image"><a href="product.html"><img src="image/product/samsung_tab_1-200x200.jpg" alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop" class="img-responsive" /></a></div>
-                <div>
-                  <div class="caption">
-                    <h4><a href="product.html">Aspire Ultrabook Laptop</a></h4>
-                    <p class="description">Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, measuring 8.6 mm thickness, running with An..</p>
-                    <p class="price"> <span class="price-new">$230.00</span> <span class="price-old">$241.99</span> <span class="saving">-5%</span> <span class="price-tax">Ex Tax: $190.00</span> </p>
-                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
-                  </div>
-                  <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>Add to Cart</span></button>
-                    <div class="add-to-links">
-                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
             <div class="col-sm-6 text-left">
