@@ -22,7 +22,8 @@ mongoose.connect(db.url);
 app.use(express.static(__dirname + '/assets'));
 app.use('/uploads', express.static('uploads'));
 app.use('/pictures', express.static('pictures'));
-
+app.use('/product/', express.static(__dirname + '/assets/'));
+app.use('/product/', express.static(__dirname + '/'));
 
 
 //use ejs-localsfor ejs template

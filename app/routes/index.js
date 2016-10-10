@@ -94,23 +94,48 @@ app.get('/add-item', function(req, res){
 });
 
 app.get('/admin-vegetables', function(req, res){
-  res.render('admin/admin-vegetables.ejs');
+   Product.find({category: "vegetables"}, function(err, products) {
+     if(err) return err;
+
+     res.render('admin/admin-vegetables.ejs', {products:products})
+   })
+
 });
 
 app.get('/admin-fruits', function(req, res){
-  res.render('admin/admin-fruits.ejs');
-});
+  Product.find({category: "fruits"}, function(err, products) {
+    if(err) return err;
+
+    res.render('admin/admin-fruits.ejs', {products:products})
+  })
+
+  });
 
 app.get('/admin-kitchen', function(req, res){
-  res.render('admin/admin-kitchen.ejs');
+  Product.find({category: "kitchen"}, function(err, products) {
+    if(err) return err;
+
+    res.render('admin/admin-kitchen.ejs', {products:products})
+  })
+
 });
 
 app.get('/admin-staples', function(req, res){
-  res.render('admin/admin-staples.ejs');
+  Product.find({category: "staples"}, function(err, products) {
+    if(err) return err;
+
+    res.render('admin/admin-staples.ejs', {products:products})
+  })
+
 });
 
 app.get('/admin-pcare', function(req, res){
-  res.render('admin/admin-pcare.ejs');
+  Product.find({category: "pcare"}, function(err, products) {
+    if(err) return err;
+
+    res.render('admin/admin-pcare.ejs', {products:products})
+  })
+
 });
 
 

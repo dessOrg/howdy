@@ -28,28 +28,30 @@
     <div class="container">
       <!-- Breadcrumb Start-->
       <ul class="breadcrumb">
-        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="index.html" itemprop="url"><span itemprop="title"><i class="fa fa-home"></i></span></a></li>
-        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="category.html" itemprop="url"><span itemprop="title">Electronics</span></a></li>
-        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="product.html" itemprop="url"><span itemprop="title">Laptop Silver black</span></a></li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/" itemprop="url"><span itemprop="title"><i class="fa fa-home"></i></span></a></li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/<%= product.category %>" itemprop="url"><span itemprop="title"><%= product.category %></span></a></li>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/product/<%= product.id %>" itemprop="url"><span itemprop="title"><%= product.name %></span></a></li>
       </ul>
       <!-- Breadcrumb End-->
       <div class="row">
         <!--Middle Part Start-->
         <div id="content" class="col-sm-9">
           <div itemscope itemtype="http://schema.org/Product">
-            <h1 class="title" itemprop="name">Laptop Silver black</h1>
+            <h1 class="title" itemprop="name"><%= product.name %></h1>
             <div class="row product-info">
               <div class="col-sm-6">
-                <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="image/product/macbook_air_1-350x350.jpg" title="Laptop Silver black" alt="Laptop Silver black" data-zoom-image="image/product/macbook_air_1-500x500.jpg" /> </div>
+                <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="<%= product.picture %>" title="<%= product.name %>" alt="<%= product.name %>" data-zoom-image="<%= product.picture %>" /> </div>
                 <div class="center-block text-center"><span class="zoom-gallery"><i class="fa fa-search"></i> Click image for Gallery</span></div>
-                <div class="image-additional" id="gallery_01"> <a class="thumbnail" href="#" data-zoom-image="image/product/macbook_air_1-500x500.jpg" data-image="image/product/macbook_air_1-350x350.jpg" title="Laptop Silver black"> <img src="image/product/macbook_air_1-66x66.jpg" title="Laptop Silver black" alt = "Laptop Silver black"/></a> <a class="thumbnail" href="#" data-zoom-image="image/product/macbook_air_4-500x500.jpg" data-image="image/product/macbook_air_4-350x350.jpg" title="Laptop Silver black"><img src="image/product/macbook_air_4-66x66.jpg" title="Laptop Silver black" alt="Laptop Silver black" /></a> <a class="thumbnail" href="#" data-zoom-image="image/product/macbook_air_2-500x500.jpg" data-image="image/product/macbook_air_2-350x350.jpg" title="Laptop Silver black"><img src="image/product/macbook_air_2-66x66.jpg" title="Laptop Silver black" alt="Laptop Silver black" /></a> <a class="thumbnail" href="#" data-zoom-image="image/product/macbook_air_3-500x500.jpg" data-image="image/product/macbook_air_3-350x350.jpg" title="Laptop Silver black"><img src="image/product/macbook_air_3-66x66.jpg" title="Laptop Silver black" alt="Laptop Silver black" /></a> </div>
+                <div class="image-additional" id="gallery_01"> <a class="thumbnail" href="#" data-zoom-image="<%= product.picture %>" data-image="<%= product.picture %>" title="<%= product.name %>"> <img src="<%= product.picture %>" title="<%= product.name %>" alt = "<%= product.name %>"/></a> <a class="thumbnail" href="#" data-zoom-image="image/product/macbook_air_4-500x500.jpg" data-image="image/product/macbook_air_4-350x350.jpg" title="Laptop Silver black"><img src="image/product/macbook_air_4-66x66.jpg" title="Laptop Silver black" alt="Laptop Silver black" /></a> <a class="thumbnail" href="#" data-zoom-image="image/product/macbook_air_2-500x500.jpg" data-image="image/product/macbook_air_2-350x350.jpg" title="Laptop Silver black"><img src="image/product/macbook_air_2-66x66.jpg" title="Laptop Silver black" alt="Laptop Silver black" /></a> <a class="thumbnail" href="#" data-zoom-image="image/product/macbook_air_3-500x500.jpg" data-image="image/product/macbook_air_3-350x350.jpg" title="Laptop Silver black"><img src="image/product/macbook_air_3-66x66.jpg" title="Laptop Silver black" alt="Laptop Silver black" /></a> </div>
               </div>
               <div class="col-sm-6">
                 <ul class="list-unstyled description">
-                  <li><b>Brand:</b> <a href="#"><span itemprop="brand">Apple</span></a></li>
-                  <li><b>Product Code:</b> <span itemprop="mpn">Product 17</span></li>
-                  <li><b>Reward Points:</b> 700</li>
+                  <li><b>Name:</b> <a href="#"><span itemprop="brand"><%= product.name %></span></a></li>
+                  <li><b>Product category:</b> <span itemprop="mpn"><%= product.category %></span></li>
+                  <li><b>Sub cat:</b> <%= product.subCategory %></li>
                   <li><b>Availability:</b> <span class="instock">In Stock</span></li>
+                  <li><b>Price:</b> <%= product.price %></li>
+                  <li><b>Prev price:</b> <%= product.prevPrice %></li>
                 </ul>
                 <ul class="price-box">
                   <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span class="price-old">$1,202.00</span> <span itemprop="price">$1,142.00<span itemprop="availability" content="In Stock"></span></span></li>

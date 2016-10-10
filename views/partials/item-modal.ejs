@@ -1,7 +1,7 @@
 <div class="modal-content">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Item Name</h4>
+    <h4 class="modal-title"><%= products[i].name %></h4>
   </div>
   <div class="modal-body">
 
@@ -28,7 +28,7 @@
       <label for="name" class="control-label">Name:</label>
 
       <div class="controls">
-          <input type="text" id="name" name="name" value=""/>
+          <input type="text" id="name" name="name" value="<%= products[i].name %>"/>
           <span class="help-inline"></span>
       </div>
   </div>
@@ -37,7 +37,7 @@
       <label for="category" class="control-label">Category:</label>
 
       <div class="controls">
-          <input type="text" id="category" name="category" value=""/>
+          <input type="text" id="category" name="category" value="<%= products[i].category %>"/>
           <span class="help-inline"></span>
       </div>
   </div>
@@ -46,7 +46,7 @@
       <label for="sub" class="control-label">Sub-Category:</label>
 
       <div class="controls">
-          <input type="text" id="sub" name="sub" value=""/>
+          <input type="text" id="sub" name="sub" value="<%= products[i].subCategory %>"/>
       </div>
   </div>
 
@@ -54,7 +54,16 @@
       <label for="price" class="control-label">Price:</label>
 
       <div class="controls">
-          <input type="text" id="country" name="price" value=""/>
+          <input type="text" id="country" name="price" value="<%= products[i].price %>"/>
+          <span class="help-inline"></span>
+      </div>
+  </div>
+
+  <div class="control-group">
+      <label for="price" class="control-label">Old Price:</label>
+
+      <div class="controls">
+          <input type="text" id="country" name="prevPrice" value="<%= products[i].prevPice %>"/>
           <span class="help-inline"></span>
       </div>
   </div>
@@ -63,7 +72,7 @@
       <label for="description" class="control-label">Notes:</label>
 
       <div class="controls">
-          <textarea id="description" name="description" style="width: 90%;" rows="6"></textarea>
+          <textarea id="description" name="description" value="<%= products[i].note %>" style="width: 90%;" rows="6"></textarea>
       </div>
   </div>
 

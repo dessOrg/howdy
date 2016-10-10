@@ -14,14 +14,15 @@ var upload = multer({ dest: 'uploads/' });
 
 module.exports = function(app) {
 
-  
-    app.get('/all',function(req, res) {
-        Product.find(function(err, products) {
-            if (err)
-                res.send(err);
 
-            res.json(products);
-        });
+    app.get('/product/:id',function(req, res) {
+      var id = req.params.id;
+      Product.findById(id, function(err, product){
+        if(err) return err;
+        console.log(product);
+
+      res.render('pages/product.ejs',{product:product});
+      });
     });
 
 
