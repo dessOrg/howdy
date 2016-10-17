@@ -5,21 +5,21 @@
   </div>
   <div class="modal-body">
 
-<form class="form-horizontal">
+<form class="form-horizontal" action="/updatepro/<%= products[i].id %>" method="post">
 
     <div class="row">
 <div class="col-lg-5">
   <div class="well" style="width: 200px;height="190"; text-align: center;width:50%;margin: 0px auto;">
-      <p><img id="picture" width="160" height="160"src=""/></p>
-      <p style="color:#999;">To change the picture, drag a new picture from your file system onto the box above.</p>
+      <p><img src="<%= products[i].picture %>" width="160" height="160"src=""/></p>
+
   </div>
+  <input type="file" name="image">
 </div>
 <div class="col-lg-7">
   <div class="control-group">
-      <label for="itemId" class="control-label">Id:</label>
 
       <div class="controls">
-          <input id="itemId" name="id" type="text" value=""
+          <input id="itemId" name="id" type="hidden" value="<%= products[i].id %>"
                  disabled/>
       </div>
   </div>
@@ -63,7 +63,7 @@
       <label for="price" class="control-label">Old Price:</label>
 
       <div class="controls">
-          <input type="text" id="country" name="prevPrice" value="<%= products[i].prevPice %>"/>
+          <input type="text" id="country" name="prevPrice" value="<%= products[i].prevPrice %>"/>
           <span class="help-inline"></span>
       </div>
   </div>
@@ -72,7 +72,7 @@
       <label for="description" class="control-label">Notes:</label>
 
       <div class="controls">
-          <textarea id="description" name="description" value="<%= products[i].note %>" style="width: 90%;" rows="6"></textarea>
+          <input type="text" id="description" name="description" value="<%= products[i].note %>" />
       </div>
   </div>
 
@@ -80,8 +80,8 @@
 </div>
     </div>
     <div class="form-actions">
-        <a href="#" class="btn btn-success save">UPDATE</a>
-        <a href="#" class="btn btn-warning">CANCEL</a>
+        <input class="btn btn-success" type="submit" value="Update"/>
+        <input class="btn btn-warning" type="cancel" value="Cancel"/>
     </div>
 </form>
 

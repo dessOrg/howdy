@@ -24,7 +24,8 @@ app.use('/uploads', express.static('uploads'));
 app.use('/pictures', express.static('pictures'));
 app.use('/product/', express.static(__dirname + '/assets/'));
 app.use('/product/', express.static(__dirname + '/'));
-
+app.use('/adproduct/', express.static(__dirname + '/assets/'));
+app.use('/updatepro/', express.static(__dirname + '/assets/'));
 
 //use ejs-localsfor ejs template
 app.engine('ejs', engine);

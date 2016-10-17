@@ -73,16 +73,16 @@
     <% for(i=0; i<products.length; i++) {%>
     <div class="product-layout product-list col-xs-12">
       <div class="product-thumb">
-        <div class="image"><a href="product.html"><img src="<%= products[i].picture %>" alt=" <%= products[i].name %> " title=" <%= products[i].name %> " class="img-responsive" /></a></div>
+        <div class="image"><a href="/adproduct/<%= products[i].id %>"><img src="<%= products[i].picture %>" alt=" <%= products[i].name %> " title=" <%= products[i].name %> " class="img-responsive" /></a></div>
         <div>
           <div class="caption">
-            <h4><a href="product.html"> <%= products[i].name %></a></h4>
+            <h4><a href="/adproduct/<%= products[i].id %>"> <%= products[i].name %></a></h4>
             <p class="description"> <%= products[i].note %></p>
             <p class="price"> <span class="price-new">ksh.<%= products[i].price %></span> <span class="price-old">ksh.<%= products[i].prevPrice %></span> <span class="saving">-26%</span> <span class="price-tax">Ex Tax: $1,400.00</span> </p>
           </div>
           <div class="button-group">
-            <button class="btn-primary" data-toggle="modal" data-target="#myModal" type="button" onClick=""><span>EDIT</span></button>
-            <button class="btn-danger" type="button" onClick=""><span>REMOVE</span></button>
+            <button class="btn-primary" data-toggle="modal" data-target="#<%= products[i].id %>" type="button" onClick=""><span>EDIT</span></button>
+            <a href="/deletepro/<%= products[i].id %>" data-toggle="modal" data-target="#del" class="btn btn-danger" type="button" onClick=""><span>REMOVE</span></a>
             </div>
         </div>
       </div>
@@ -107,11 +107,23 @@
 <!-- Modal start -->
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<% for(i=0; i<products.length; i++) { %>
+<div id="<%= products[i].id %>" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <% include ../partials/item-modal %>
+
+  </div>
+</div>
+<% } %>
+
+
+<div id="del" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <% include ../partials/flash-modal %>
 
   </div>
 </div>
