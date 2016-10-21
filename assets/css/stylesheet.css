@@ -1019,6 +1019,9 @@ visibility:hidden;
 	font-size:13px;
 	margin-bottom:15px;
 }
+.product-image {
+	height: 100px;
+}
 .product-info .instock {
 	background:#53af2e;
 	color:#fff;

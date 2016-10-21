@@ -5,9 +5,17 @@ var Product = require('../models/products');
 
 module.exports = function(app){
 
-app.get('/', function(req, res){
-  res.render('pages/index')
-});
+  app.get('/', function(req, res){
+      Product.find({}, function(err, products){
+        if(err) return err;
+      res.render('pages/index.ejs', {
+        products : products
+      });
+      })
+
+
+  })
+
 
 app.get('/vegetables', function(req,res){
     Product.find({category:"vegetables"},function(err, products){
@@ -91,6 +99,10 @@ app.get('/dashboard', function(req, res){
 
 app.get('/add-item', function(req, res){
   res.render('admin/add-item.ejs');
+});
+
+app.get('/cart', function(req, res){
+  res.render('pages/cart.ejs');
 });
 
 app.get('/admin-vegetables', function(req, res){

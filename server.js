@@ -40,6 +40,7 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 
 //routes middleware
+//require('./app/routes/home.js')(app);
 require('./app/routes/index.js')(app);
 require('./app/routes/products.js')(app);
 
