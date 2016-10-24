@@ -30,7 +30,7 @@
       <ul class="breadcrumb">
         <li><a href="index.html"><i class="fa fa-home"></i></a></li>
         <li><a href="login.html">Account</a></li>
-        <li><a href="login.html">Login</a></li>
+        <li><a href="/loginp">Login</a></li>
       </ul>
       <!-- Breadcrumb End-->
       <div class="row">
@@ -46,9 +46,10 @@
             <div class="col-sm-6">
               <h2 class="subtitle">Returning Customer</h2>
               <p><strong>I am a returning customer</strong></p>
+              <form method="post" action="/login" >
                 <div class="form-group">
-                  <label class="control-label" for="input-email">E-Mail Address</label>
-                  <input type="text" name="email" value="" placeholder="E-Mail Address" id="input-email" class="form-control" />
+                  <label class="control-label" for="input-username">Username</label>
+                  <input type="text" name="username" value="" placeholder="sernameU" id="input-username" class="form-control" />
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="input-password">Password</label>
@@ -56,6 +57,7 @@
                   <br />
                   <a href="#">Forgotten Password</a></div>
                 <input type="submit" value="Login" class="btn btn-primary" />
+              </form>
             </div>
           </div>
         </div>

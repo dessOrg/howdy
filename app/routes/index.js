@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var Product = require('../models/products');
+var User = require('../models/user');
 
 module.exports = function(app){
 
@@ -94,7 +95,13 @@ app.get('/contact', function(req, res){
 });
 
 app.get('/dashboard', function(req, res){
-  res.render('admin/dashboard.ejs');
+  User.find({}, function(err, users){
+    if(err) return err;
+    res.render('admin/dashboard.ejs', {
+      users : users
+    });
+  })
+
 });
 
 app.get('/add-item', function(req, res){

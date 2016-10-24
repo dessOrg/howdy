@@ -1,40 +1,41 @@
 var express = require('express');
 var app = express();
-var Product = require('../models/products');
+var User = require('../models/user');
 var mongoose = require('mongoose');
 
 module.exports = function(app){
 
-  var User = require('../models/user');
-  module.exports = function(app) {
-  //login
 
    //get Register
-    app.get('/new', function(req,res){
+    app.get('/register', function(req,res){
       var errors = "";
       var utaken = "";
       res.render('pages/register', {
         errors : errors,
         utaken : utaken,
        });
-    }):
+    });
 
     //Register user
-    app.get('/create', function(req, res){
-      var fname=req.body.fname;
-      var lname=req.body.lname;
+    app.post('/signup', function(req, res){
+      var firstname=req.body.firstname;
+      var lastname=req.body.lastname;
+      var email=req.body.email;
       var phone=req.body.phone;
+      var residence=req.body.residence;
       var username=req.body.username;
       var password=req.body.password;
       var password2=req.body.password2;
       var role = "normal";
 
       //validation
-      req.checkBody('fname','First Name is required').notEmpty();
-      req.checkBody('lname','Last Name is required').notEmpty();
+      req.checkBody('firstname','First Name is required').notEmpty();
+      req.checkBody('lastname','Last Name is required').notEmpty();
       req.checkBody('username','Username is required').notEmpty();
       req.checkBody('phone','Phone number is required').notEmpty();
-      //req.checkBody('email','Email is not valid').isEmail();
+      req.checkBody('residence','Residence is required').notEmpty();
+      req.checkBody('email','Email is required').notEmpty();
+      req.checkBody('email','Email is not valid').isEmail();
       req.checkBody('password','Password is required').notEmpty();
       req.checkBody('password', 'Password should be 8 to 20 characters').len(8, 20);
       req.checkBody('password2','Passwords do not match').equals(req.body.password);
@@ -57,7 +58,7 @@ module.exports = function(app){
               var errors = "";
               var msg = "";
               var utaken = "That Username exists in our system."
-              res.render('register', {
+              res.render('pages/register', {
                 errors : errors,
                 msg : msg,
                 utaken : utaken
@@ -66,10 +67,12 @@ module.exports = function(app){
           else{
               console.log('You have no register errors');
               var newUser=new User({
-                fname: fname,
-                lname: lname,
+                firstname: firstname,
+                lastname: lastname,
                 username: username,
+                email : email,
                 phone: phone,
+                residence : residence,
                 password: password,
                 role: role
               });
@@ -78,11 +81,11 @@ module.exports = function(app){
                 console.log(user);
               });
               req.flash('success_msg', 'you are registered and now can login');
-            res.redirect('/login');
+            res.redirect('/loginp');
           }
         });
       };
-    }
+
   });
 
 }

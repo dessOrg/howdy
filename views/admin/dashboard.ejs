@@ -31,22 +31,54 @@
 
 <div class="tab">
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#admin">ADMINS</a></li>
-    <li><a data-toggle="tab" href="#cust">CUSTOMERS</a></li>
+    <li class="active"><a data-toggle="tab" href="#cust">CUSTOMERS</a></li>
+    <li><a data-toggle="tab" href="#admin">ADMIN</a></li>
 
   </ul>
 
   <div class="tab-content">
-    <div id="admin" class="tab-pane fade in active">
-      <h1 class="title">Admins</h1>
+    <div id="cust" class="tab-pane fade in active">
+      <h1 class="title">CUSTOMERS</h1>
       <table class="table">
       <thead>
         <tr>
-  <th>FNAME</th>
-  <th>LNAME</th>
-  <th>ROLE</th>
-  <th>ACTION</th>
+          <th>FNAME</th>
+          <th>LNAME</th>
+          <th>MOBILE NO</th>
+          <th>RESIDENCE</th>
+          <th>ACTION</th>
+
+
   </tr>
+      </thead>
+      <tbody>
+
+        <% for(i=0; i<users.length; i++) { %>
+      <tr >
+
+        <td><%= users[i].firstname %></td>
+        <td><%= users[i].lastname %></td>
+        <td><%= users[i].phone %></td>
+        <td><%= users[i].residence %></td>
+      <td><a href="/deleteuser/<%= users[i]._id %>">Delete</a></td>
+
+
+      </tr>
+      <% } %>
+
+      </tbody>
+      </table>
+    </div>
+    <div id="admin" class="tab-pane fade">
+      <h1 class="title">ADMINS</h1>
+      <table class="table">
+      <thead>
+        <tr>
+          <th>FNAME</th>
+          <th>LNAME</th>
+          <th>ROLE</th>
+          <th>ACTION</th>
+       </tr>
       </thead>
       <tbody>
         <tr>
@@ -57,51 +89,18 @@
       <td><button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button> </td>
 
         </tr>
+        <% for(i=0; i<users.length; i++) { %>
       <tr >
-      <td>Mitch</td>
-      <td>Ser</td>
-      <td>Super Admin</td>
+
+      <td><%= users[i].firstname %></td>
+      <td><%= users[i].lastname %></td>
+      <td><%= users[i].role %></td>
       <td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</td>
       <td><button class="btn btn-warning" ng-click="edit(x._id)">Edit</td>
 
       </tr>
-      <tr >
-      <td>Arnold</td>
-      <td>Swarch</td>
-      <td>Admin</td>
-      <td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</td>
-      <td><button class="btn btn-warning" ng-click="edit(x._id)">Edit</td>
+      <% } %>
 
-      </tr>
-      </tbody>
-      </table>
-    </div>
-    <div id="cust" class="tab-pane fade">
-      <h1 class="title">Customers</h1>
-      <table class="table">
-      <thead>
-        <tr>
-  <th>FNAME</th>
-  <th>LNAME</th>
-  <th>RESIDENCE</th>
-  <th>ACTION</th>
-  </tr>
-      </thead>
-      <tbody>
-      <tr >
-      <td>Mitch</td>
-      <td>Ser</td>
-      <td>tUDOR</td>
-      <td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</td>
-      
-      </tr>
-      <tr >
-      <td>Arnold</td>
-      <td>Swarch</td>
-      <td>NYALI</td>
-      <td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</td>
-
-      </tr>
       </tbody>
     </table>
     </div>

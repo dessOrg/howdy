@@ -1,17 +1,21 @@
-var express = require("express");
-var app = express();
+var express = require('express');
+var app     = express();
 
-var path = require("path");
-var bodyParser = require("body-parser");
-var expressValidator = require('express-validator');
-var cookieParser =  require('cookie-parser');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local'),Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var mongostore = require('connect-mongo/es5')(session);
 var multer = require('multer');
 var fs = require('fs');
 var engine = require('ejs-locals');
-
 
 var pictures = multer({ dest: 'pictures/' });
 
@@ -39,10 +43,54 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(morgan('dev'));
 
+//express session
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true,
+  store: new mongostore({url: db.url, autoReconnect: true })
+}));
+
+//pasport initialize
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
+//express validator
+app.use(expressValidator({
+  errorFormatter:function(param, msg, value){
+    var namespace = param.split('.')
+    , root = namespace.shift()
+    , formParam = root;
+    while(namespace.length){
+      formParam += '['+ namespace.shift()+ ']';
+    }
+    return{
+      param : formParam,
+      msg : msg,
+      value : value
+    };
+  }
+}));
+//connect-flash
+app.use(flash());
+
+//global vars
+app.use(function(req, res, next){
+  res.locals.success_msg =  req.flash('success_msg');
+  res.locals.error_msg =  req.flash('error_msg');
+  res.locals.error =  req.flash('error');
+  res.locals.user =  req.user;
+  next();
+});
+
 //routes middleware
-//require('./app/routes/home.js')(app);
+require('./app/routes/register.js')(app);
 require('./app/routes/index.js')(app);
 require('./app/routes/products.js')(app);
+require('./app/routes/user.js')(app);
+require('./app/routes/sessions.js')(app);
+
 
 app.set('port',(process.env.PORT || 8000));
 app.listen(app.get('port'),function(){

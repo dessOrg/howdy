@@ -66,8 +66,18 @@
       </div>
       <div id="top-links" class="nav pull-right flip">
         <ul>
-          <li><a href="login">Login</a></li>
-          <li><a href="register">Register</a></li>
+          <!--show login and sign up links if user is not logged in -->
+          <% if(!user) {%>
+          <li><a href="/loginp">Login</a></li>
+          <li><a href="/register">Register</a></li>
+          <%}%>
+
+          <!--show logout and display name if current user is logged in -->
+          <% if(user) {%>
+          <li><a href="/admin">Welcome <%= user.username %></a></li>
+          <li><a href="/logout">Logout</a></li>
+          <%}%>
+
         </ul>
       </div>
     </div>
