@@ -94,8 +94,12 @@ app.get('/contact', function(req, res){
   res.render('pages/contact.ejs');
 });
 
+app.get('/about', function(req, res){
+  res.render('pages/about.ejs');
+});
+
 app.get('/dashboard', function(req, res){
-  User.find({}, function(err, users){
+  User.find({role : "normal"}, function(err, users){
     if(err) return err;
     res.render('admin/dashboard.ejs', {
       users : users

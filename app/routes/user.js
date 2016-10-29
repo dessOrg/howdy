@@ -3,6 +3,37 @@ var mongoose = require('mongoose');
 
 module.exports = function(app) {
 
+//get all adims
+app.get('/admins', function(req,res){
+  User.find({role:"admin"}, function(err, users){
+    if(err) return err;
+    res.render('admin/admins', {
+      users : users
+    } )
+  })
+})
+
+  //Admin can change roles for users via this route
+app.get('/role/:username/:role', function (req, res){
+  var role = req.params.role;
+    var username = req.params.username;
+    User.getUserByUsername(username, function(err, user){
+      if(err) return err;
+      if(user){
+        if(role == 'admin'){
+          user.update({role:role}, function(err, user){
+          console.log(user);
+            if(err) return(err)
+            res.redirect('/loginp');
+          });
+        }
+      }else{
+        res.send("user does not exist");
+      }
+    });
+
+})
+
   //admin routes for deleting users
   app.get('/deleteuser/:id', function(req, res){
     console.log(req.params.id);

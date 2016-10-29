@@ -8,6 +8,13 @@
       <!-- Logo End -->
       <!-- Mini Cart Start-->
       <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <% if(!user) { %>
+
+          <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
+          <a href="register" class="btn btn-primary">Continue</a> </div>
+
+          <% } %>
+        <% if(user) { %>
         <div id="cart">
           <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="heading dropdown-toggle">
           <span class="cart-icon pull-left flip"></span>
@@ -56,15 +63,18 @@
             </li>
           </ul>
         </div>
+        <% } %>
       </div>
       <!-- Mini Cart End-->
       <!-- Search Start-->
+      <% if(user)  { %>
       <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12 inner">
         <div id="search" class="input-group">
           <input id="filter_name" type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
           <button type="button" class="button-search"><i class="fa fa-search"></i></button>
         </div>
       </div>
+      <% } %>
       <!-- Search End-->
     </div>
   </div>

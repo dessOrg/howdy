@@ -19,10 +19,22 @@ module.exports =function(app) {
             if(err) return err;
 
             console.log(req.user);
-            res.redirect(req.session.returnTo || '/')
+            res.redirect(req.session.returnTo || '/use')
             delete req.session.returnTo;
           });
     })(req,res,next);
+  });
+
+  app.get('/use', function(req,res){
+    var user = req.user;
+    var role = user.role;
+
+    if(role =="admin"){
+     res.redirect('/dashboard');
+    }
+    else if(role == "normal"){
+      res.redirect('/');
+    }
   });
 
   app.get('/logout', function(req, res){
