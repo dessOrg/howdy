@@ -70,6 +70,7 @@ module.exports = function(app) {
     product.save(function(err, product){
       if(err) return err;
       console.log(product);
+      console.log(product.id);
       res.redirect('/add-item');
     });
 

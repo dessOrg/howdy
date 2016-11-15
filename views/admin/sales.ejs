@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href="image/favicon.png" rel="icon" />
+<title>Howdy's Market</title>
+<meta name="description" content="Responsive and clean html template design for any kind of ecommerce webshop">
+<!-- CSS Part Start-->
+<% include ../partials/bootstrap %>
+<!-- CSS Part End-->
+</head>
+<body>
+<div class="wrapper-wide">
+
+  <div id="header">
+    <!-- Top Bar Start-->
+    <% include ../partials/top %>
+    <!-- Top Bar End-->
+    <!-- Header Start-->
+  <% include ../partials/admin-logo-section %>
+    <!-- Header End-->
+    <!-- Main Menu Start-->
+    <% include ../partials/admin-header %>
+    <!-- Main Menu End-->
+  </div>
+</div>
+<div id="container">
+  <div class="container">
+    <!-- Breadcrumb Start-->
+    <ul class="breadcrumb">
+      <li><a href="/"><i class="fa fa-home"></i></a></li>
+      <li><a href="/admin/orders">General Sales</a></li>
+    </ul>
+    <!-- Breadcrumb End-->
+
+    <div class="row">
+      <!--Middle Part Start-->
+      <div id="content" class="col-sm-12">
+        <h1 class="title"><%= salesCount %> Sales</h1>
+        <% for(i=0; i<orders.length; i++){ %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+           <a> Name :<%= orders[i].name  %> &nbsp;&nbsp;&nbsp; Residence :<%= orders[i].residence %> &nbsp;&nbsp;&nbsp; Mobile No :<%= orders[i].phone %>  %></a>
+          </div>
+          <div class="panel-body">
+
+              <ul class="list-group">
+
+                <% for (p in orders[i].cart) { %>
+                  <li class="list-group-item">
+                    <span class=''><%= orders[i].cart[p].item.name  %> &nbsp;&nbsp;&nbsp;  quantity:<%= orders[i].cart[p].qty  %> &nbsp;&nbsp;&nbsp;  Unit Price:<%= orders[i].cart[p].item.price  %>
+                        &nbsp;&nbsp;&nbsp;Total Price :<%= orders[i].cart[p].price  %></span>
+                </li>
+              <% } %>
+
+                </ul>
+          </div>
+          <div class="panel-footer">
+            <p class="checkout"><a><span>Status :<strong> <%= orders[i].status  %></span>&nbsp;&nbsp;&nbsp;  <span>Total Price :<strong><%= orders[i].totalPrice  %></span>&nbsp;&nbsp;&nbsp;
+              </p>
+        </div>
+      <% } %>
+
+      </div>
+      <!--Middle Part End -->
+    </div>
+
+
+  </div>
+</div>
+
+<!--Footer Start-->
+<% include ../partials/footer %>
+<!-- footer ends -->
+<!-- Custom Side Block End -->
+</div>
+<!-- JS Part Start-->
+<% include ../partials/footer-script %>
+<!-- JS Part End-->
+</body>
+</html>

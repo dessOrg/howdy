@@ -100,6 +100,7 @@ fjs.parentNode.insertBefore(js, fjs);
     <iframe allowfullscreen="" src="//www.youtube.com/embed/SZEflIVnhH8" height="315" width="560"></iframe>
   </p>
 </div>
+<script src="js/shoppingCart.js"></script>
 <!-- Video Side Block End -->
 <script>
 
@@ -112,12 +113,19 @@ fjs.parentNode.insertBefore(js, fjs);
          console.log(id);
          hwShoppingCart.addItemToCart(id, name, picture, price, 1)
          displayCart();
+         displayCartT();
      });
+
+     $(".sload-cart").click(function(event){
+      sload();
+
+     })
 
 
      $("#clear-cart").click(function(event){
        hwShoppingCart.clearCart();
        displayCart();
+       displayCartT();
      })
 
      function displayCart() {
@@ -127,150 +135,76 @@ fjs.parentNode.insertBefore(js, fjs);
               output += "<tr>"+"<td class='text-center'>"
               +"<a href='product.html'>"
               +"<img class='img-thumbnail' src="+"'"+cartArray[i].picture+"'"+"style='height : 50px; width : 50px'>"
-              +"</a>"
-              +" "+cartArray[i].name
-              +" "+cartArray[i].count
-              +" x "+cartArray[i].price
-              +" = "+cartArray[i].total
-              +"<button class='plus-item' data-id='"
-              +cartArray[i].id+"'>+</button>"
-              +"<button class='subtract-item' data-id='"
-              +cartArray[i].id+"'>-</button>"
-              +"<button class='delete-item' data-id='"
-              +cartArray[i].id+"'>x</button>"
-              +"</td>"
+              +"</a>"+"</td>"
+              +"<td class='text-left'>"+cartArray[i].name+"</td>"
+              +"<td class='text-left'>"+cartArray[i].count+"</td>"
+              +"<td class='text-right'>"+cartArray[i].price+"</td>"
+              +"<td class='text-right'>"+cartArray[i].total+"</td>"
+              +"<td class='text-right'>"+"<button class='btn btn-primary plus-item' data-id='"
+              +cartArray[i].id+"'>+</button>"+"</td>"
+              +"<td class='text-right'>"+"<button class='btn btn-warning subtract-item' data-id='"
+              +cartArray[i].id+"'>-</button>"+"</td>"
+              +"<td class='text-right'>"+"<button class='btn btn-danger delete-item' data-id='"
+              +cartArray[i].id+"'>x</button>"+"</td>"
               +"</tr>"
          }
          $("#show-cart").html(output);
+         $("#count-cart").html(hwShoppingCart.countCart());
          $("#total-cart").html(hwShoppingCart.totalCart());
+         $("#total-cart-c").html(hwShoppingCart.totalCart());
+         $("#total-cost").html(hwShoppingCart.totalCartC());
      }
+
+     function displayCartT() {
+         var cartArray = hwShoppingCart.listCart();
+         var output = "";
+         for (var i in cartArray) {
+              output += "<tr>"+"<td class='text-center'>"
+              +"<a href='product.html'>"
+              +"<img class='img-thumbnail' src="+"'"+cartArray[i].picture+"'"+"style='height : 50px; width : 50px'>"
+              +"</a>"+"</td>"
+              +"<td class='text-left'>"+cartArray[i].name+"</td>"
+              +"<td class='text-left'>"+cartArray[i].count+"</td>"
+              +"<td class='text-right'>"+cartArray[i].price+"</td>"
+              +"<td class='text-right'>"+cartArray[i].total+"</td>"
+              +"</tr>"
+         }
+         $("#show-cart-t").html(output);
+         $("#show-cart-c").html(output);
+         $("#count-cart").html(hwShoppingCart.countCart());
+         $("#total-cart").html(hwShoppingCart.totalCart());
+         $("#total-cart-t").html(hwShoppingCart.totalCart());
+         $("#total-cart-c").html(hwShoppingCart.totalCart());
+         $("#total-cost-c").html(hwShoppingCart.totalCartC());
+     }
+
 
      $("#show-cart").on("click", ".delete-item", function(event){
        var id = $(this).attr("data-id");
        hwShoppingCart.removeItemFromCartAll(id);
        displayCart();
+       displayCartT();
      });
 
      $("#show-cart").on("click", ".subtract-item", function(event){
        var id = $(this).attr("data-id");
        hwShoppingCart.removeItemFromCart(id);
        displayCart();
+       displayCartT();
      });
 
      $("#show-cart").on("click", ".plus-item", function(event){
        var id = $(this).attr("data-id");
        hwShoppingCart.addItemToCart(id, "", "", 0, 1);
        displayCart();
+       displayCartT();
      });
 
-     //***********************
-     // Shopping cart functions
-     var hwShoppingCart = {};
-      hwShoppingCart.cart = [];
+     displayCartT();
+     displayCart();
 
-     hwShoppingCart.Item = function(id, name, picture, price, count){
-       this.id = id
-       this.name = name
-       this.picture = picture
-       this.price = price
-       this.count = count
-     };
-
-     // addItemToCart
-     hwShoppingCart.addItemToCart = function(id, name, picture, price, count){
-        for (var i in this.cart ){
-          if(this.cart[i].id === id){
-            this.cart[i].count += count;
-            hwShoppingCart.saveCart();
-            return;
-          }
-        }
-        var item = new this.Item(id, name, picture, price, count);
-        console.log(item);
-        this.cart.push(item);
-        hwShoppingCart.saveCart();
-     }
-
-
-     hwShoppingCart.removeItemFromCart = function(id) {// Remove one item
-         for (var i in this.cart){
-           if (this.cart[i].id === id) {
-               this.cart[i].count --;
-               if (this.cart[i].count === 0){
-                 this.cart.splice(i, 1);
-               }
-               break;
-           }
-         }
-         hwShoppingCart.saveCart();
-     }
-
-     hwShoppingCart.removeItemFromCartAll = function(id)  {// Removes all item name
-       for (var i in this.cart){
-         if (this.cart[i].id === id) {
-             if (this.cart[i].count === 0){
-               this.cart.splice(i, 1);
-             }
-             break;
-         }
-       }
-       hwShoppingCart.saveCart()
-     }
-
-
-     hwShoppingCart.clearCart = function() {
-       this.cart = [];
-       hwShoppingCart.saveCart();
-     }
-
-     //clearCart();
-
-     hwShoppingCart.countCart = function() { // return total countCart
-        var totalCount = 0;
-        for (var i in this.cart) {
-          totalCount += this.cart[i].coount;
-        }
-        return totalCount;
-     }
-
-     hwShoppingCart.totalCart = function() { // return total cost
-       var totalCost = 0;
-       for (var i in this.cart) {
-         totalCost += this.cart[i].price * this.cart[i].count;
-       }
-       return totalCost.toFixed(2);
-     }
-
-     hwShoppingCart.listCart = function() { // -> array of item
-         var cartCopy = [];
-         for (var i in this.cart) {
-              var item = this.cart[i];
-              var itemCopy = {};
-              for (var p in item) {
-                   itemCopy[p] = item[p];
-               }
-               itemCopy.total = (item.price * item.count).toFixed(2);
-               cartCopy.push(itemCopy);
-         }
-         return cartCopy;
-      }
-
-     hwShoppingCart.saveCart = function() { //save cart to local storage
-       localStorage.setItem("hwShoppingCart", JSON.stringify(this.cart));
-     }
-
-     hwShoppingCart.loadCart = function() { // load cart from local storage
-       this.cart = JSON.parse(localStorage.getItem("hwShoppingCart"));
-       if (this.cart === null) {
-             this.cart = [];
-            }
-     }
-     hwShoppingCart.loadCart();
-
-
-displayCart();
-
-console.log("Shopping Cart : cart")
-console.log(hwShoppingCart.cart)
+     console.log("Shopping Cart : cart")
+     console.log(hwShoppingCart.cart);
+     console.log(hwShoppingCart.countCart());
 
 </script>

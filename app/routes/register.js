@@ -2,18 +2,21 @@ var express = require('express');
 var app = express();
 var User = require('../models/user');
 var mongoose = require('mongoose');
+var Cart = require('../models/cart');
 
 module.exports = function(app){
 
 
    //get Register
     app.get('/register', function(req,res){
-      var errors = "";
-      var utaken = "";
-      res.render('pages/register', {
-        errors : errors,
-        utaken : utaken,
-       });
+      if (!req.session.cart) {
+          res.render('pages/register.ejs', {products : null});
+      }else {
+        var cart = new Cart(req.session.cart);
+        var products = cart.generateArray();
+        console.log(products);
+        res.render('pages/register.ejs', {products, totalPrice: cart.totalPrice});
+      }
     });
 
     //Register user
@@ -80,8 +83,19 @@ module.exports = function(app){
                 if (err) throw err;
                 console.log(user);
               });
-              req.flash('success_msg', 'you are registered and now can login');
-            res.redirect('/loginp');
+              if(req.session.oldUrl) {
+                  var oldUrl = req.session.oldUrl;
+                  req.session.oldUrl = null;
+                  res.redirect(oldUrl);
+
+              }else {
+                req.login(user, function(err){
+                  if(err) return err;
+                  console.log(req.user);
+                  res.redirect(req.session.returnTo || '/use')
+                  delete req.session.returnTo;
+                });
+              }
           }
         });
       };

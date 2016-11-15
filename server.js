@@ -20,6 +20,7 @@ var engine = require('ejs-locals');
 var pictures = multer({ dest: 'pictures/' });
 
 var db = require('./config/database.js');
+mongoose.Promise = global.Promise;
 mongoose.connect(db.url);
 
 //set static folder.
@@ -30,6 +31,9 @@ app.use('/product/', express.static(__dirname + '/assets/'));
 app.use('/product/', express.static(__dirname + '/'));
 app.use('/adproduct/', express.static(__dirname + '/assets/'));
 app.use('/updatepro/', express.static(__dirname + '/assets/'));
+app.use('/api/profile', express.static(__dirname + '/assets/'));
+app.use('/admin/orders', express.static(__dirname + '/assets/'));
+app.use('/admin/sales', express.static(__dirname + '/assets/'));
 
 //use ejs-localsfor ejs template
 app.engine('ejs', engine);
@@ -46,8 +50,8 @@ app.use(morgan('dev'));
 //express session
 app.use(session({
   secret: 'secret',
-  saveUninitialized: true,
-  resave: true,
+  saveUninitialized: false,
+  resave: false,
   store: new mongostore({url: db.url, autoReconnect: true })
 }));
 
@@ -81,6 +85,7 @@ app.use(function(req, res, next){
   res.locals.error_msg =  req.flash('error_msg');
   res.locals.error =  req.flash('error');
   res.locals.user =  req.user;
+  res.locals.session = req.session;
   next();
 });
 
@@ -90,6 +95,7 @@ require('./app/routes/index.js')(app);
 require('./app/routes/products.js')(app);
 require('./app/routes/user.js')(app);
 require('./app/routes/sessions.js')(app);
+require('./app/routes/cart.js')(app);
 
 
 app.set('port',(process.env.PORT || 8000));

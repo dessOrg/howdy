@@ -34,6 +34,7 @@
       <li><a href="/cart">Shopping Cart</a></li>
     </ul>
     <!-- Breadcrumb End-->
+    <% if (products)  { %>
     <div class="row">
       <!--Middle Part Start-->
       <div id="content" class="col-sm-12">
@@ -41,28 +42,31 @@
           <div class="table-responsive">
             <table class="table table-bordered">
               <thead>
-                <tr id="show-cart">
+                <tr >
                   <td class="text-center">Image</td>
                   <td class="text-left">Product Name</td>
                   <td class="text-left">Quantity</td>
                   <td class="text-right">Unit Price</td>
                   <td class="text-right">Total</td>
+                  <td class="text-right">Add Quantity</td>
+                  <td class="text-right">Reduce Quantity</td>
+                  <td class="text-right">Delete Product</td>
                 </tr>
               </thead>
-              <tbody>
-                <tr >
-
-                  <td class="text-center"><a href="product.html"><img src="image/product/sony_vaio_1-50x50.jpg" alt="Xitefun Causal Wear Fancy Shoes" title="Xitefun Causal Wear Fancy Shoes" class="img-thumbnail" /></a></td>
-                  <td class="text-left"><a href="product.html">Xitefun Causal Wear Fancy Shoes</a></td>
-                  <td class="text-left"><div class="input-group btn-block quantity">
-                      <input type="text" name="quantity" value="1" size="1" class="form-control" />
-                      <span class="input-group-btn">
-                      <button type="submit" data-toggle="tooltip" title="Update" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
-                      <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger" onClick=""><i class="fa fa-times-circle"></i></button>
-                      </span></div></td>
-                  <td class="text-right">$902.00</td>
-                  <td class="text-right">$902.00</td>
+              <tbody id="">
+                <% for(i=0; i<products.length; i++){ %>
+                <tr>
+                  <td class='text-center'>"
+                <a href='/product/<%= products[i].item._id %>'><img class='img-thumbnail' src="<%= products[i].item.picture  %>" style='height : 50px; width : 50px'></a></td>
+                <td class='text-left'><%= products[i].item.name  %></td>
+                <td class='text-left'><%= products[i].qty  %></td>
+                <td class='text-right'><%= products[i].item.price  %></td>
+                <td class='text-right'><%= products[i].price  %></td>
+                <td class='text-right'><a href="/addItemToCart/<%= products[i].item._id %>" class='btn btn-primary plus-item' data-id=''>+</a></td>
+                <td class='text-right'><a class='btn btn-warning subtract-item' data-id=''>-</a></td>
+                <td class='text-right'><a class='btn btn-danger delete-item' data-id=''>x</a></td>
                 </tr>
+                <% } %>
               </tbody>
             </table>
           </div>
@@ -72,30 +76,34 @@
             <table class="table table-bordered">
               <tr>
                 <td class="text-right"><strong>Sub-Total:</strong></td>
-                <td class="text-right">$940.00</td>
+                <td class="text-right">Ksh.<span id="totat"><%= totalPrice %></span></td>
               </tr>
               <tr>
-                <td class="text-right"><strong>Eco Tax (-2.00):</strong></td>
-                <td class="text-right">$4.00</td>
-              </tr>
-              <tr>
-                <td class="text-right"><strong>VAT (20%):</strong></td>
-                <td class="text-right">$188.00</td>
+                <td class="text-right"><strong>Transport:</strong></td>
+                <td class="text-right">Ksh.<span >100</span></td>
               </tr>
               <tr>
                 <td class="text-right"><strong>Total:</strong></td>
-                <td class="text-right">$1,132.00</td>
+                <td class="text-right">Ksh.<span id="total-cost"></span></td>
               </tr>
             </table>
           </div>
         </div>
         <div class="buttons">
           <div class="pull-left"><a href="/" class="btn btn-default">Continue Shopping</a></div>
-          <div class="pull-right"><a href="checkout.html" class="btn btn-primary">Checkout</a></div>
+          <div class="pull-right"><a href="/checkout" class="btn btn-primary">Checkout</a></div>
         </div>
       </div>
       <!--Middle Part End -->
     </div>
+    <% } %>
+    <% if(!products)  { %>
+<div class="row">
+<div class="col-md-12 text-centre">
+<h3>No Cart</h3>
+</div>
+</div>
+      <% } %>
   </div>
 </div>
 

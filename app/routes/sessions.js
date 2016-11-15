@@ -1,19 +1,30 @@
 //session routes for users
 var User = require('../models/user');
 var passport = require('passport');
+var Cart = require('../models/cart');
+
 
 module.exports =function(app) {
 
-  app.get('/loginp', function(req, res){
-    res.render('pages/login');
-  });
+  app.get('/login', function(req, res){
+    if (!req.session.cart) {
+        res.render('pages/login.ejs', {products : null});
+    }else {
+      var cart = new Cart(req.session.cart);
+      var products = cart.generateArray();
+      console.log(products);
+      res.render('pages/login.ejs', {products, totalPrice: cart.totalPrice});
+    }
+
+
+    });
 
   app.post('/login', function(req, res, next) {
         passport.authenticate('local', function(err,user){
           if(err) return err;
           if(!user){
             console.log('Not a user');
-            return res.redirect('/loginp');
+            return res.redirect('/login');
           }
           req.login(user, function(err){
             if(err) return err;
@@ -21,7 +32,10 @@ module.exports =function(app) {
             console.log(req.user);
             res.redirect(req.session.returnTo || '/use')
             delete req.session.returnTo;
+
+
           });
+
     })(req,res,next);
   });
 
@@ -33,7 +47,13 @@ module.exports =function(app) {
      res.redirect('/dashboard');
     }
     else if(role == "normal"){
-      res.redirect('/');
+      if(req.session.oldUrl) {
+       var oldUrl = req.session.oldUrl;
+       req.session.oldUrl = null;
+       res.redirect(oldUrl);
+     }else {
+       res.redirect('/');
+       }
     }
   });
 
@@ -49,4 +69,12 @@ module.exports =function(app) {
     req.session.destroy();
   });
 
+}
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  req.session.oldUrl = req.url;
+  res.redirect('/loginp');
 }

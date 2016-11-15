@@ -4,7 +4,6 @@
   "description": "Howdy Website",
   "main": "server.js",
   "authors": [
-
     "Desmond Korir <deskip95@gmail.com>"
   ],
   "scripts": {

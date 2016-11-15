@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var mongoose = require('mongoose');
+var Order = require('../models/order');
 
 module.exports = function(app) {
 
@@ -7,9 +8,15 @@ module.exports = function(app) {
 app.get('/admins', function(req,res){
   User.find({role:"admin"}, function(err, users){
     if(err) return err;
+
+    Order.find({}, function(err, orders) {
+      if (err) return err;
+
+      var count = orders.length;
     res.render('admin/admins', {
-      users : users
+      users : users, count
     } )
+  })
   })
 })
 

@@ -1,75 +1,91 @@
 <header class="header-row">
-  <div class="container">
-    <div class="table-container">
-      <!-- Logo Start -->
-      <div class="col-table-cell col-lg-6 col-md-6 col-sm-12 col-xs-12 inner">
-        <div id="logo"><a href="/"><img class="img-responsive" src="image/logo.png" title="MarketShop" alt="MarketShop" /></a></div>
-      </div>
-      <!-- Logo End -->
-      <!-- Mini Cart Start-->
-      <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <% if(!user) { %>
 
-          <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
-          <a href="register" class="btn btn-primary">Continue</a> </div>
+    <div class="container">
+      <div class="table-container">
+        <!-- Logo Start -->
+        <div class="col-table-cell col-lg-6 col-md-6 col-sm-12 col-xs-12 inner">
+          <div id="logo"><a href="/"><img class="img-responsive" src="image/logo.png" title="MarketShop" alt="MarketShop" /></a></div>
+        </div>
+        <!-- Logo End -->
+        <!-- Mini Cart Start-->
+        <% if (!products)  { %>
+        <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
-          <% } %>
-        <% if(user) { %>
-        <div id="cart">
-          <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="heading dropdown-toggle">
-          <span class="cart-icon pull-left flip"></span>
-          <span id="cart-total">2 item(s) - ksh.1,132.00</span></button>
-          <ul class="dropdown-menu">
-            <li>
-              <table class="table">
-                <tbody>
-                  <tr id="show-cart">
-                    <td class="text-center"><a href="product.html"><img class="img-thumbnail" title="Xitefun Causal Wear Fancy Shoes" alt="Xitefun Causal Wear Fancy Shoes" src="image/product/sony_vaio_1-50x50.jpg"></a></td>
-                    <td class="text-left"><a href="product.html">Spinach</a></td>
-                    <td class="text-right">x 1</td>
-                    <td class="text-right">$902.00</td>
-                    <td class="text-center"><button class="btn btn-danger btn-xs remove" title="Remove" onClick="" type="button"><i class="fa fa-times"></i></button></td>
-                  </tr>
-
-                </tbody>
-              </table>
-            </li>
-            <li>
-              <div>
-                <table class="table table-bordered">
-                  <tbody>
-                    <tr>
-                      <td class="text-right"><strong>Total</strong></td>
-                      <td class="text-right"> $.<span id="total-cart"></span></td>
-                    </tr>
-                    <tr>
-                      <td class="text-right"><strong>VAT (16%)</strong></td>
-                      <td class="text-right">$188.00</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right"><strong>Total</strong></td>
-                      <td class="text-right">$1,132.00</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p class="checkout"><a href="/cart" class="btn btn-primary " onClick=""><i class="fa fa-shopping-cart"></i> View Cart</a>&nbsp;&nbsp;&nbsp;<a href="checkout.html" class="btn btn-primary"><i class="fa fa-share"></i> Checkout</a></p>
-              </div>
-            </li>
-          </ul>
+          <div id="cart">
+            <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="heading dropdown-toggle">
+            <span class="cart-icon pull-left flip"></span>
+            <span id="cart-total"><span id="">0</span> item(s) - ksh.<span id="">0.00</span></span></button>
+            <ul class="dropdown-menu">
+              <h2>No Cart</h2>
+            </ul>
+          </div>
         </div>
         <% } %>
-      </div>
-      <!-- Mini Cart End-->
-      <!-- Search Start-->
-      <% if(user)  { %>
-      <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12 inner">
-        <div id="search" class="input-group">
-          <input id="filter_name" type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
-          <button type="button" class="button-search"><i class="fa fa-search"></i></button>
+        <% if ( products)  { %>
+        <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+          <div id="cart">
+            <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="heading dropdown-toggle">
+            <span class="cart-icon pull-left flip"></span>
+            <span id="cart-total"><span id=""><%= session.cart.totalQty %></span> item(s) - ksh.<span id=""><%= session.cart.totalPrice %></span></span></button>
+            <ul class="dropdown-menu">
+              <li>
+                <table class="table">
+                  <thead>
+                    <tr >
+                      <td class="text-center">Image</td>
+                      <td class="text-left">Product Name</td>
+                      <td class="text-left">Quantity</td>
+                      <td class="text-right">Unit Price</td>
+                      <td class="text-right">Total</td>
+                    </tr>
+                  </thead>
+                  <tbody id="">
+                    <% for(i=0; i<products.length; i++){ %>
+                    <tr >
+                      <td class="text-center"><a href="/product/<%= products[i].item._id %>"><img class="img-thumbnail" style='height : 50px; width : 50px' title="<%= products[i].item.name  %>" alt="<%= products[i].item.name  %>" src="<%= products[i].item.picture  %>"></a></td>
+                      <td class="text-left"><a href="/product/<%= products[i].item._id %>"><%= products[i].item.name  %></a></td>
+                      <td class="text-right">x <%= products[i].qty  %></td>
+                      <td class="text-right">x <%= products[i].item.price  %></td>
+                      <td class="text-right">ksh.<%= products[i].price  %></td>
+
+                    </tr>
+                    <% } %>
+
+                  </tbody>
+                </table>
+              </li>
+              <li>
+                <div>
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td class="text-right"><strong>Total</strong></td>
+                        <td class="text-right"> ksh.<span id="tot"><%= totalPrice %></span></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                  <p class="checkout"><a href="/cart" class="btn btn-primary " onClick=""><i class="fa fa-shopping-cart"></i> View Cart</a>&nbsp;&nbsp;&nbsp;<a href="/checkout" class="btn btn-primary"><i class="fa fa-share"></i> Checkout</a>&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-danger " id="clear-cart"><i class="fa fa-trash"></i> Clear Cart</a></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
         </div>
+        <% } %>
+        <!-- Mini Cart End-->
+        <!-- Search Start-->
+
+        <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12 inner">
+          <div id="search" class="input-group">
+            <input id="filter_name" type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
+            <button type="button" class="button-search"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+
+        <!-- Search End-->
       </div>
-      <% } %>
-      <!-- Search End-->
     </div>
-  </div>
+    
 </header>
