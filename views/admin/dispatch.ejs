@@ -31,18 +31,18 @@
     <!-- Breadcrumb Start-->
     <ul class="breadcrumb">
       <li><a href="/"><i class="fa fa-home"></i></a></li>
-      <li><a href="/admin/orders">Customer Orders</a></li>
+      <li><a href="/admin/dispatch">Received Orders Waiting Dispatch</a></li>
     </ul>
     <!-- Breadcrumb End-->
 
     <div class="row">
       <!--Middle Part Start-->
       <div id="content" class="col-sm-12">
-        <h1 class="title"><%= count %> Orders</h1>
+        <h1 class="title"><%= dCount %> Orders</h1>
         <% for(i=0; i<orders.length; i++){ %>
         <div class="panel panel-default">
           <div class="panel-heading">
-           <a> Name :<%= orders[i].name  %> &nbsp;&nbsp;&nbsp; Residence :<%= orders[i].residence %> &nbsp;&nbsp;&nbsp; Mobile No :<%= orders[i].phone %>&nbsp;&nbsp;&nbsp;<a class="btn btn-success" href="/api/sms/<%= orders[i].id %>"><span>Receive</span></a></a>
+           <a> Name :<%= orders[i].name  %> &nbsp;&nbsp;&nbsp; Residence :<%= orders[i].residence %> &nbsp;&nbsp;&nbsp; Mobile No :<%= orders[i].phone %>&nbsp;&nbsp;&nbsp;</a>
           </div>
           <div class="panel-body">
 
@@ -63,8 +63,8 @@
                <p class="checkout"><a><span>Status :<strong> <%= orders[i].status  %></span>&nbsp;&nbsp;&nbsp;  <span>Total Price :<strong><%= orders[i].totalPrice  %></span></p>
               </div>
               <div class="col-md-6">
-                <form method="post" action="/receive/<%= orders[i].id  %> ">
-               <a><input type="submit"  class="btn btn-primary " value="receive Order"><i class="fa fa-shopping-cart"> </i></a>
+                <form method="post" action="/dispatch/<%= orders[i].id  %> ">
+               <a><input type="submit"  class="btn btn-primary " value="Dispatch Order"><i class="fa fa-shopping-cart"> </i></a>
              </form>
               </div></div>
 

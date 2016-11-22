@@ -14,41 +14,69 @@ module.exports = function(app){
       if (!req.session.cart) {
         Product.find({}, function(err, hproducts){
           if(err) return err;
-          res.render('pages/index.ejs', {
-            products : null,
-            hproducts : hproducts
-                });
+          Product.find({category : "bestselling"}, function(err, bestselling){
+            if(err) return err;
+
+            Product.find({category : "special"}, function(err, special){
+              if(err) return err;
+              res.render('pages/index.ejs', {
+                products : null,
+                hproducts : hproducts,
+                bestselling : bestselling,
+                special : special
+                    });
+
+            });
+          });
+
+
           });
       }else {
         Product.find({}, function(err, hproducts){
           if(err) return err;
           var cart = new Cart(req.session.cart);
           var products = cart.generateArray();
-          res.render('pages/index.ejs', {
-            products,
-            totalPrice: cart.totalPrice,
-            hproducts : hproducts
-                });
+          Product.find({category : "bestselling"}, function(err, bestselling){
+            if(err) return err;
+
+            Product.find({category : "special"}, function(err, special){
+              if(err) return err;
+              res.render('pages/index.ejs', {
+                products,
+                totalPrice: cart.totalPrice,
+                hproducts : hproducts,
+                bestselling : bestselling,
+                special : special
+                    });
+
+            });
+          });
+
           });
       }
 
 
   });
 
-app.get('/home', function(req, res) {
-
-
-
-  })
-
 app.get('/vegetables', function(req,res){
   if (!req.session.cart) {
     Product.find({category:"vegetables"},function(err, hproducts){
       if(err) return err;
-      res.render('pages/vegetables.ejs',{
-        products : null,
-        hproducts : hproducts
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/vegetables.ejs', {
+            products : null,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
+
     });
   }else {
     Product.find({category:"vegetables"},function(err, hproducts){
@@ -56,12 +84,23 @@ app.get('/vegetables', function(req,res){
       var cart = new Cart(req.session.cart);
       var products = cart.generateArray();
 
-      res.render('pages/vegetables.ejs',{
-        products,
-        totalPrice: cart.totalPrice,
-        hproducts : hproducts
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/vegetables.ejs', {
+            products,
+            totalPrice: cart.totalPrice,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
-    });
+
+  });
   }
 
   });
@@ -70,22 +109,45 @@ app.get('/fruits', function(req, res){
   if (!req.session.cart) {
     Product.find({category:"fruits"},function(err, hproducts){
       if(err) return err;
-      res.render('pages/fruits.ejs',{
-        products : null,
-        hproducts : hproducts
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/fruits.ejs', {
+            products : null,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
+
     });
   }else {
     Product.find({category:"fruits"},function(err, hproducts){
       if(err) return err;
       var cart = new Cart(req.session.cart);
       var products = cart.generateArray();
-      res.render('pages/fruits.ejs',{
-        products,
-        totalPrice: cart.totalPrice,
-        hproducts : hproducts
+
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/fruits.ejs', {
+            products,
+            totalPrice: cart.totalPrice,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
-    });
+
+  });
   }
 });
 
@@ -93,10 +155,21 @@ app.get('/kitchen', function(req, res){
   if (!req.session.cart) {
     Product.find({category:"kitchen"},function(err, hproducts){
       if(err) return err;
-      res.render('pages/kitchen.ejs',{
-        products : null,
-        hproducts : hproducts
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/kitchen.ejs', {
+            products : null,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
+
     });
   }else {
     Product.find({category:"kitchen"},function(err, hproducts){
@@ -104,36 +177,72 @@ app.get('/kitchen', function(req, res){
       var cart = new Cart(req.session.cart);
       var products = cart.generateArray();
 
-      res.render('pages/kitchen.ejs',{
-        products,
-        totalPrice: cart.totalPrice,
-        hproducts : hproducts
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/kitchen.ejs', {
+            products,
+            totalPrice: cart.totalPrice,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
-    });
+
+  });
   }
+
 });
 
 app.get('/staples', function(req, res){
   if (!req.session.cart) {
     Product.find({category:"staples"},function(err, hproducts){
       if(err) return err;
-      res.render('pages/staples.ejs',{
-        products : null,
-        hproducts : hproducts
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/staples.ejs', {
+            products : null,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
+
     });
   }else {
     Product.find({category:"staples"},function(err, hproducts){
       if(err) return err;
       var cart = new Cart(req.session.cart);
       var products = cart.generateArray();
-      res.render('pages/staples.ejs',{
-        products,
-        totalPrice: cart.totalPrice,
-        hproducts : hproducts
+
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/staples.ejs', {
+            products,
+            totalPrice: cart.totalPrice,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
-    });
+
+  });
   }
+
 });
 
 app.get('product', function(req, res){
@@ -144,32 +253,66 @@ app.get('/pcare', function(req, res){
   if (!req.session.cart) {
     Product.find({category:"pcare"},function(err, hproducts){
       if(err) return err;
-      res.render('pages/pcare.ejs',{
-        products : null,
-        hproducts : hproducts
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/pcare.ejs', {
+            products : null,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
+
     });
   }else {
     Product.find({category:"pcare"},function(err, hproducts){
       if(err) return err;
       var cart = new Cart(req.session.cart);
       var products = cart.generateArray();
-      res.render('pages/pcare.ejs',{
-        products,
-        totalPrice: cart.totalPrice,
-        hproducts : hproducts
+
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/pcare.ejs', {
+            products,
+            totalPrice: cart.totalPrice,
+            hproducts : hproducts,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
       });
-    });
+
+  });
   }
+
 });
 
 app.get('/contact', function(req, res){
-  Order.find({}, function(err, orders) {
-    if (err) return err;
+  if (!req.session.cart) {
 
-    var count = orders.length;
-  res.render('pages/contact.ejs', count);
-});
+          res.render('pages/contact.ejs', {
+            products : null
+                      });
+
+      }else {
+    var cart = new Cart(req.session.cart);
+      var products = cart.generateArray();
+          res.render('pages/contact.ejs', {
+            products,
+            totalPrice: cart.totalPrice,
+            });
+
+}
+
 });
 
 app.get('/about', function(req, res){
@@ -293,5 +436,36 @@ app.get('/admin-pcare', function(req, res){
 
 });
 
+app.get('/admin/specials', function(req, res){
+  Product.find({category: "special"}, function(err, products) {
+    if(err) return err;
+
+    Order.find({status : "pending"}, function(err, orders) {
+      if (err) return err;
+
+      var count = orders.length;
+      res.render('admin/specials.ejs',{
+        count, products:products
+      });
+  });
+  })
+
+});
+
+app.get('/admin/bestselling', function(req, res){
+  Product.find({category: "bestselling"}, function(err, products) {
+    if(err) return err;
+    console.log(products);
+    Order.find({status : "pending"}, function(err, orders) {
+      if (err) return err;
+
+      var count = orders.length;
+      res.render('admin/bestselling.ejs',{
+        count, products:products
+      });
+  });
+  })
+
+});
 
 };

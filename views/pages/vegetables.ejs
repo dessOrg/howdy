@@ -92,10 +92,10 @@
                     <input type="hidden" name="id" value="">
                     <h4><a href="/product/<%= hproducts[i].id %>"> <%= hproducts[i].name %> </a></h4>
                     <p class="description"> <%= hproducts[i].note %></p>
-                    <p class="price"> <span class="price-new">$<%= hproducts[i].price %></span> <span class="price-old">$<%= hproducts[i].prevPrice %></span> <span class="saving">-26%</span> <span class="price-tax">Ex Tax: $1,400.00</span> </p>
+                    <p class="price"> <span class="price-new">ksh.<%= hproducts[i].price %></span> <span class="price-old">ksh.<%= hproducts[i].prevPrice %></span> <span class="saving">-26%</span> <span class="price-tax">Ex Tax: $1,400.00</span> </p>
                   </div>
                   <div class="button-group">
-                    <a class="" href="/add-to-cart/<%= hproducts[i].id %>"><span>Add to Cart</span></a>
+                    <a class="btn btn-success" href="/add-to-cart/<%= hproducts[i].id %>"><span>Add to Cart</span></a>
 
                     <div class="add-to-links">
                       <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>

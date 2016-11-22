@@ -34,6 +34,13 @@
       <li><a href="/cart">Shopping Cart</a></li>
     </ul>
     <!-- Breadcrumb End-->
+    <% if(!products)  { %>
+<div class="row">
+<div class="col-md-12 text-centre">
+<h3>No Cart</h3>
+</div>
+</div>
+      <% } %>
     <% if (products)  { %>
     <div class="row">
       <!--Middle Part Start-->
@@ -63,8 +70,8 @@
                 <td class='text-right'><%= products[i].item.price  %></td>
                 <td class='text-right'><%= products[i].price  %></td>
                 <td class='text-right'><a href="/addItemToCart/<%= products[i].item._id %>" class='btn btn-primary plus-item' data-id=''>+</a></td>
-                <td class='text-right'><a class='btn btn-warning subtract-item' data-id=''>-</a></td>
-                <td class='text-right'><a class='btn btn-danger delete-item' data-id=''>x</a></td>
+                <td class='text-right'><a href="/reduceByOne/<%= products[i].item._id %>" class='btn btn-warning subtract-item' data-id=''>-</a></td>
+                <td class='text-right'><a href="/removeAll/<%= products[i].item._id %>" class='btn btn-danger delete-item' data-id=''>x</a></td>
                 </tr>
                 <% } %>
               </tbody>
@@ -97,13 +104,7 @@
       <!--Middle Part End -->
     </div>
     <% } %>
-    <% if(!products)  { %>
-<div class="row">
-<div class="col-md-12 text-centre">
-<h3>No Cart</h3>
-</div>
-</div>
-      <% } %>
+
   </div>
 </div>
 

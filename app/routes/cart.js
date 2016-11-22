@@ -43,13 +43,6 @@ module.exports = function(app) {
 req.session = null // Deletes the cookie.
  });
 
- app.post("/art",isLoggedIn, function(req, res){
-   var products = new Cart(req.session.cart);
-   var cart = products.totalQty;
-   console.log(products);
-   });
-
-
  app.get('/api/profile', isLoggedIn, function(req, res, next) {
    if (!req.session.cart) {
      Order.find({user : req.user}, function(err, orders) {
@@ -98,6 +91,26 @@ req.session = null // Deletes the cookie.
 
  });
 
+ app.get('/admin/dispatch', isAdmin, function(req, res, next) {
+
+     Order.find({status : "received"}, function(err, orders) {
+       if (err) return err;
+
+      var cart;
+       orders.forEach(function(order) {
+         cart =  new Cart(order.cart);
+         order.items = cart.generateArray();
+       });
+
+      Order.find({status : "pending"}, function(err, pOrders) {
+        if (err) return err;
+        var count = pOrders.length;
+        var dCount = orders.length;
+      res.render('admin/dispatch.ejs', { orders, dCount, count});
+     });
+ });
+ });
+
  app.get('/admin/sales', isAdmin, function(req, res, next) {
 
      Order.find({status : "dispatched"}, function(err, orders) {
@@ -129,6 +142,7 @@ app.get("/add-to-cart/:id", function(req, res){
      }else {
        cart.add(product, product.id);
        req.session.cart = cart;
+        console.log(req.session.cart);
        var category = product.category;
        if (category == "vegetables") {
          res.redirect("/vegetables");
@@ -164,25 +178,57 @@ app.get("/addItemToCart/:id", function(req, res){
 })
 });
 
+app.get("/addByOne/:id", function(req, res){
+   var productId = req.params.id;
+   var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+       cart.addByOne(productId);
+       req.session.cart = cart;
+       res.redirect("/cart");
+});
+
+app.get("/reduceByOne/:id", function(req, res){
+   var productId = req.params.id;
+   var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+       cart.reduceByOne(productId);
+       req.session.cart = cart;
+       res.redirect("/cart");
+});
+
+app.get("/removeAll/:id", function(req, res){
+   var productId = req.params.id;
+   var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+       cart.removeAll(productId);
+       req.session.cart = cart;
+       res.redirect("/cart");
+});
+
+
 app.get('/cart', function(req, res){
    if (!req.session.cart) {
        res.render('pages/cart.ejs', {products : null});
+   }else {
+     var cart = new Cart(req.session.cart);
+     var products = cart.generateArray();
+     console.log(products);
+     res.render('pages/cart.ejs', {products, totalPrice: cart.totalPrice});
+
    }
-   var cart = new Cart(req.session.cart);
-   var products = cart.generateArray();
-   console.log(products);
-   res.render('pages/cart.ejs', {products, totalPrice: cart.totalPrice});
 
 });
 
 app.get('/checkout', isLoggedIn, function(req, res){
   if (!req.session.cart) {
       res.render('pages/cart.ejs', {products : null});
+  }else {
+    var cart = new Cart(req.session.cart);
+    var products = cart.generateArray();
+    console.log(products);
+    res.render('pages/checkout.ejs', {products, totalPrice: cart.totalPrice});
   }
-  var cart = new Cart(req.session.cart);
-  var products = cart.generateArray();
-  console.log(products);
-  res.render('pages/checkout.ejs', {products, totalPrice: cart.totalPrice});
+
 });
 
 app.post('/dispatch/:id', function(req,res) {
@@ -194,11 +240,28 @@ app.post('/dispatch/:id', function(req,res) {
     order.save(function(err) {
       if (err) return err;
 
+      res.redirect('/admin/dispatch');
+    })
+
+  })
+});
+
+app.post('/receive/:id', function(req,res) {
+  var order = new Order();
+  Order.findById(req.params.id, function(err, order) {
+    if (err) return err;
+
+    order.status = "received"
+    order.save(function(err) {
+      if (err) return err;
+
       res.redirect('/admin/orders');
     })
 
   })
-})
+});
+
+
 
 
 };

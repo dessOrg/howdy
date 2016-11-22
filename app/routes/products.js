@@ -8,6 +8,8 @@ var multer = require('multer');
 var fs = require('fs');
 var pictures = multer({});
 var Product = require('../models/products');
+var Order = require('../models/order');
+var Cart = require('../models/cart');
 var mongoose = require('mongoose');
 
 var upload = multer({ dest: 'uploads/' });
@@ -17,12 +19,43 @@ module.exports = function(app) {
 
     app.get('/product/:id',function(req, res) {
       var id = req.params.id;
-      Product.findById(id, function(err, product){
-        if(err) return err;
-        console.log(product);
+      if (!req.session.cart) {
 
-      res.render('pages/product.ejs',{product:product});
-      });
+        Product.findById(id, function(err, hproduct){
+          if(err) return err;
+
+          var category = hproduct.category;
+
+          Product.find({category : category}, function(err, hproducts) {
+            if (err) return err;
+            console.log(hproducts);
+            res.render('pages/product.ejs',{
+              products : null,
+              hproduct : hproduct,
+              hproducts : hproducts
+            });
+          })
+        });
+      }else {
+        Product.findById(id, function(err, hproduct){
+          if(err) return err;
+          var cart = new Cart(req.session.cart);
+          var products = cart.generateArray();
+          var category = hproduct.category;
+          console.log(category);
+          Product.find({category : category}, function(err, hproducts) {
+            if (err) return err;
+            res.render('pages/product.ejs',{
+              products,
+              totalPrice: cart.totalPrice,
+              hproduct : hproduct,
+              hproducts : hproducts
+            });
+          })
+
+        });
+      }
+
     });
 
     app.get('/adproduct/:id', function(req, res){
@@ -31,9 +64,14 @@ module.exports = function(app) {
         if(err) return err;
         console.log(product);
 
-        res.render('admin/admin-product.ejs', {
-          product : product
-        });
+        Order.find({status : "pending"}, function(err, orders) {
+          if (err) return err;
+
+          var count = orders.length;
+          res.render('admin/admin-product.ejs',{
+            count, product:product
+          });
+      });
       });
     });
 

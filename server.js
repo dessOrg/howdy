@@ -34,6 +34,10 @@ app.use('/updatepro/', express.static(__dirname + '/assets/'));
 app.use('/api/profile', express.static(__dirname + '/assets/'));
 app.use('/admin/orders', express.static(__dirname + '/assets/'));
 app.use('/admin/sales', express.static(__dirname + '/assets/'));
+app.use('/admin/dispatch', express.static(__dirname + '/assets/'));
+app.use('/admin/specials', express.static(__dirname + '/assets/'));
+app.use('/admin/bestselling', express.static(__dirname + '/assets/'));
+
 
 //use ejs-localsfor ejs template
 app.engine('ejs', engine);
@@ -96,6 +100,7 @@ require('./app/routes/products.js')(app);
 require('./app/routes/user.js')(app);
 require('./app/routes/sessions.js')(app);
 require('./app/routes/cart.js')(app);
+require('./app/routes/sms.js')(app);
 
 
 app.set('port',(process.env.PORT || 8000));
