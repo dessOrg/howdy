@@ -84,7 +84,7 @@
 
           <div class="row products-category">
             <% for(i=0; i<hproducts.length; i++){ %>
-            <div class="product-layout product-list col-xs-12">
+            <div class=" product-list col-lg-4">
               <div class="product-thumb">
                 <div class="image"><a href="/product/<%= hproducts[i].id %>"><img src="<%= hproducts[i].picture %>" alt=" " title="  " class="img-responsive product-image"  /></a></div>
                 <div>
@@ -99,8 +99,7 @@
 
                     <div class="add-to-links">
                       <button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span></button>
-                      <button type="button" data-toggle="tooltip" title="Compare this Product" onClick=""><i class="fa fa-exchange"></i> <span>Compare this Product</span></button>
-                    </div>
+                      </div>
                   </div>
                 </div>
               </div>

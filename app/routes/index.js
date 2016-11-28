@@ -316,12 +316,59 @@ app.get('/contact', function(req, res){
 });
 
 app.get('/about', function(req, res){
-  Order.find({status : "pending"}, function(err, orders) {
-    if (err) return err;
+  if (!req.session.cart) {
 
-    var count = orders.length;
-  res.render('pages/about.ejs', count);
+    Product.find({category : "bestselling"}, function(err, bestselling){
+      if(err) return err;
+
+      Product.find({category : "special"}, function(err, special){
+        if(err) return err;
+        res.render('pages/about.ejs', {
+          products : null,
+          bestselling : bestselling,
+          special : special
+              });
+
+      });
+    });
+      }else {
+    var cart = new Cart(req.session.cart);
+      var products = cart.generateArray();
+      Product.find({category : "bestselling"}, function(err, bestselling){
+        if(err) return err;
+
+        Product.find({category : "special"}, function(err, special){
+          if(err) return err;
+          res.render('pages/about.ejs', {
+            products,
+            totalPrice: cart.totalPrice,
+            bestselling : bestselling,
+            special : special
+                });
+
+        });
+      });
+  }
+
 });
+
+app.get('/faq', function(req, res){
+  if (!req.session.cart) {
+
+          res.render('pages/faq.ejs', {
+            products : null
+                      });
+
+      }else {
+    var cart = new Cart(req.session.cart);
+      var products = cart.generateArray();
+          res.render('pages/faq.ejs', {
+            products,
+            totalPrice: cart.totalPrice,
+            });
+
+}
+
 });
 
 app.get('/dashboard', function(req, res){
