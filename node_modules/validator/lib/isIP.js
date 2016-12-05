@@ -15,7 +15,7 @@ var ipv4Maybe = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/;
 var ipv6Block = /^[0-9A-F]{1,4}$/i;
 
 function isIP(str) {
-  var version = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+  var version = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
   (0, _assertString2.default)(str);
   version = String(version);
@@ -68,8 +68,8 @@ function isIP(str) {
         // it has been checked before that the last
         // block is a valid IPv4 address
       } else if (!ipv6Block.test(blocks[i])) {
-          return false;
-        }
+        return false;
+      }
     }
     if (foundOmissionBlock) {
       return blocks.length >= 1;

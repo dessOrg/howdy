@@ -16,12 +16,15 @@ var mongostore = require('connect-mongo/es5')(session);
 var multer = require('multer');
 var fs = require('fs');
 var engine = require('ejs-locals');
-
 var pictures = multer({ dest: 'pictures/' });
+var dotenv           =  require('dotenv');
+var env              =  process.env.NODE_ENV || 'development';
 
-var db = require('./config/database.js');
+dotenv.load();
+
+var configDB = require('./config/settings');
 mongoose.Promise = global.Promise;
-mongoose.connect(db.url);
+mongoose.connect(configDB.getDB(env));
 
 //set static folder.
 app.use(express.static(__dirname + '/assets'));
@@ -53,10 +56,10 @@ app.use(morgan('dev'));
 
 //express session
 app.use(session({
-  secret: 'secret',
   saveUninitialized: false,
   resave: false,
-  store: new mongostore({url: db.url, autoReconnect: true })
+  secret: configDB.getSecret(env),
+  store : new mongostore({ url : configDB.getDB(env), autoReconnect : true })
 }));
 
 //pasport initialize
@@ -106,6 +109,8 @@ require('./app/routes/sms.js')(app);
 app.set('port',(process.env.PORT || 8000));
 app.listen(app.get('port'),function(){
   console.log('Running on port '+app.get('port'));
+  console.log("connected to mongo ", configDB.getDB(env));
+console.log(env + ' Server running on localhost: port ' );
 });
 
 module.exports = app;
