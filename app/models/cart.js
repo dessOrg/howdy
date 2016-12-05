@@ -15,7 +15,7 @@ module.exports = function Cart(oldCart) {
           }else {
             storedItem.qty++;
             this.totalPrice += storedItem.item.price;
-            storedItem.price += storedItem.item.price ;
+            storedItem.price += storedItem.price ;
             this.totalQty++;
 
           }

@@ -31,7 +31,7 @@ app.get('/role/:username/:role', function (req, res){
           user.update({role:role}, function(err, user){
           console.log(user);
             if(err) return(err)
-            res.redirect('/loginp');
+            res.redirect('/dashboard');
           });
         }
       }else{

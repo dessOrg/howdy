@@ -114,7 +114,7 @@ app.get('/fruits', function(req, res){
 
         Product.find({category : "special"}, function(err, special){
           if(err) return err;
-          res.render('pages/fruits.ejs', {
+          res.render('pages/vegetables.ejs', {
             products : null,
             hproducts : hproducts,
             bestselling : bestselling,
@@ -136,7 +136,7 @@ app.get('/fruits', function(req, res){
 
         Product.find({category : "special"}, function(err, special){
           if(err) return err;
-          res.render('pages/fruits.ejs', {
+          res.render('pages/vegetables.ejs', {
             products,
             totalPrice: cart.totalPrice,
             hproducts : hproducts,
@@ -160,7 +160,7 @@ app.get('/kitchen', function(req, res){
 
         Product.find({category : "special"}, function(err, special){
           if(err) return err;
-          res.render('pages/kitchen.ejs', {
+          res.render('pages/vegetables.ejs', {
             products : null,
             hproducts : hproducts,
             bestselling : bestselling,
@@ -182,7 +182,7 @@ app.get('/kitchen', function(req, res){
 
         Product.find({category : "special"}, function(err, special){
           if(err) return err;
-          res.render('pages/kitchen.ejs', {
+          res.render('pages/vegetables.ejs', {
             products,
             totalPrice: cart.totalPrice,
             hproducts : hproducts,
@@ -207,7 +207,7 @@ app.get('/staples', function(req, res){
 
         Product.find({category : "special"}, function(err, special){
           if(err) return err;
-          res.render('pages/staples.ejs', {
+          res.render('pages/vegetables.ejs', {
             products : null,
             hproducts : hproducts,
             bestselling : bestselling,
@@ -229,7 +229,7 @@ app.get('/staples', function(req, res){
 
         Product.find({category : "special"}, function(err, special){
           if(err) return err;
-          res.render('pages/staples.ejs', {
+          res.render('pages/vegetables.ejs', {
             products,
             totalPrice: cart.totalPrice,
             hproducts : hproducts,
@@ -245,10 +245,6 @@ app.get('/staples', function(req, res){
 
 });
 
-app.get('product', function(req, res){
-  res.render('pages/product.ejs');
-});
-
 app.get('/pcare', function(req, res){
   if (!req.session.cart) {
     Product.find({category:"pcare"},function(err, hproducts){
@@ -258,7 +254,7 @@ app.get('/pcare', function(req, res){
 
         Product.find({category : "special"}, function(err, special){
           if(err) return err;
-          res.render('pages/pcare.ejs', {
+          res.render('pages/vegetables.ejs', {
             products : null,
             hproducts : hproducts,
             bestselling : bestselling,
@@ -280,7 +276,7 @@ app.get('/pcare', function(req, res){
 
         Product.find({category : "special"}, function(err, special){
           if(err) return err;
-          res.render('pages/pcare.ejs', {
+          res.render('pages/vegetables.ejs', {
             products,
             totalPrice: cart.totalPrice,
             hproducts : hproducts,
@@ -429,7 +425,7 @@ app.get('/admin-fruits', function(req, res){
       if (err) return err;
 
       var count = orders.length;
-      res.render('admin/admin-fruits.ejs',{
+      res.render('admin/admin-vegetables.ejs',{
         count, products:products
       });
   });
@@ -444,7 +440,7 @@ app.get('/admin-kitchen', function(req, res){
       if (err) return err;
 
       var count = orders.length;
-      res.render('admin/admin-kitchen.ejs',{
+      res.render('admin/admin-vegetables.ejs',{
         count, products:products
       });
   });
@@ -459,7 +455,7 @@ app.get('/admin-staples', function(req, res){
       if (err) return err;
 
       var count = orders.length;
-      res.render('admin/admin-staples.ejs',{
+      res.render('admin/admin-vegetables.ejs',{
         count, products:products
       });
   });
@@ -475,7 +471,7 @@ app.get('/admin-pcare', function(req, res){
       if (err) return err;
 
       var count = orders.length;
-      res.render('admin/admin-pcare.ejs',{
+      res.render('admin/admin-vegetables.ejs',{
         count, products:products
       });
   });
@@ -491,7 +487,7 @@ app.get('/admin/specials', function(req, res){
       if (err) return err;
 
       var count = orders.length;
-      res.render('admin/specials.ejs',{
+      res.render('admin/admin-vegetables.ejs',{
         count, products:products
       });
   });
@@ -507,7 +503,7 @@ app.get('/admin/bestselling', function(req, res){
       if (err) return err;
 
       var count = orders.length;
-      res.render('admin/bestselling.ejs',{
+      res.render('admin/admin-vegetables.ejs',{
         count, products:products
       });
   });

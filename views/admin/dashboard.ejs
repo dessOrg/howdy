@@ -1,4 +1,4 @@
-admin-<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8" />
@@ -41,6 +41,7 @@ admin-<!DOCTYPE html>
           <th>Email</th>
           <th>RESIDENCE</th>
           <th>ACTION</th>
+          <th>CHANGE ROLE</th>
         </tr>
       </thead>
       <tbody>
@@ -56,6 +57,7 @@ admin-<!DOCTYPE html>
         <td><%= users[i].residence %></td>
 
       <td><a href="/deleteuser/<%= users[i]._id %>">Delete</a></td>
+      <td><a href="/role/<%= users[i].username %>/admin">Make Admin</a></td>
 
 
       </tr>
