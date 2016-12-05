@@ -10,12 +10,12 @@ module.exports = function(app){
    //get Register
     app.get('/register', function(req,res){
       if (!req.session.cart) {
-          res.render('pages/register.ejs', {products : null});
+          res.render('pages/register.ejs', {products : null, message : null});
       }else {
         var cart = new Cart(req.session.cart);
         var products = cart.generateArray();
         console.log(products);
-        res.render('pages/register.ejs', {products, totalPrice: cart.totalPrice});
+        res.render('pages/register.ejs', {products, totalPrice: cart.totalPrice, message : null});
       }
     });
 
@@ -47,11 +47,8 @@ module.exports = function(app){
       if (errors){
         var msg = errors.msg;
         var utaken = "";
-        res.render('pages/register', {
-          errors : errors,
-          msg : msg,
-          utaken : utaken
-      });
+        req.flash('success', "Successfully logged in");
+
       console.log(errors);
       }
       else {
