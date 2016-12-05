@@ -1,12 +1,12 @@
 module.exports=[
 	{
-    'environment': 'development',
-    'url'       : 'mongodb://localhost/howdys',
+    'environment': 'production',
+    'url'       : 'mongodb://dessHub:test1ng@ds119578.mlab.com:19578/howdys',
     'secret'    : 'anystringoftext'
   },
 
   {
-    'environment': 'production',
+    'environment': 'productio',
     'url'       : process.env.MONGOLAB_URI,
     'secret'    : 'anystringoftext'
   },
