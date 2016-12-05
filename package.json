@@ -7,8 +7,10 @@
     "Desmond Korir <deskip95@gmail.com>"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && bower install && nodemon server"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "start": "npm install && bower install && rm -rf .tmp/ && nodemon -e css,html,js server.js -L",
+    "predev": "./bin/grunt",
+    "dev": "npm install && bower install && rm -rf .tmp/ & ./bin/nodedev server & ./bin/grunt watch"
   },
   "author": "Desmond",
   "license": "ISC",
