@@ -7,7 +7,7 @@ module.exports=[
 
   {
     'environment': 'production',
-    'url'       : 'mongodb://mongodb://dessHub:1ncorrect.@ds119578.mlab.com:19578/howdys',
+    'url'       : process.env.MONGOLAB_URI,
     'secret'    : 'anystringoftext'
   },
 
