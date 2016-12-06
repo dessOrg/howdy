@@ -10,12 +10,12 @@ module.exports = function(app){
    //get Register
     app.get('/register', function(req,res){
       if (!req.session.cart) {
-          res.render('pages/register.ejs', {products : null, message : null});
+          res.render('pages/register.ejs', {products : null, error : null,info: null});
       }else {
         var cart = new Cart(req.session.cart);
         var products = cart.generateArray();
         console.log(products);
-        res.render('pages/register.ejs', {products, totalPrice: cart.totalPrice, message : null});
+        res.render('pages/register.ejs', {products, totalPrice: cart.totalPrice, error : null,info: null});
       }
     });
 
@@ -45,10 +45,16 @@ module.exports = function(app){
 
       var errors = req.validationErrors();
       if (errors){
-        var msg = errors.msg;
+        var err = errors.msg;
         var utaken = "";
-        req.flash('success', "Successfully logged in");
-
+        //req.flash('error', msg);
+        if (!req.session.cart) {
+            res.render('pages/register.ejs', {products : null, error: errors, info: utaken});
+        }else {
+          var cart = new Cart(req.session.cart);
+          var products = cart.generateArray();
+          res.render('pages/register.ejs', {products, totalPrice: cart.totalPrice, error: errors,info: utaken});
+        }
       console.log(errors);
       }
       else {
@@ -58,11 +64,13 @@ module.exports = function(app){
               var errors = "";
               var msg = "";
               var utaken = "That Username exists in our system."
-              res.render('pages/register', {
-                errors : errors,
-                msg : msg,
-                utaken : utaken
-            });
+              if (!req.session.cart) {
+                  res.render('pages/register.ejs', {products : null, error : null, info: utaken});
+              }else {
+                var cart = new Cart(req.session.cart);
+                var products = cart.generateArray();
+                res.render('pages/register.ejs', {products, totalPrice: cart.totalPrice, error : null,info: utaken});
+              }
           }
           else{
               console.log('You have no register errors');

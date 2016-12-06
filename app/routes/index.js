@@ -14,6 +14,7 @@ module.exports = function(app){
       if (!req.session.cart) {
         Product.find({}, function(err, hproducts){
           if(err) return err;
+
           Product.find({category : "bestselling"}, function(err, bestselling){
             if(err) return err;
 
@@ -498,7 +499,6 @@ app.get('/admin/specials', function(req, res){
 app.get('/admin/bestselling', function(req, res){
   Product.find({category: "bestselling"}, function(err, products) {
     if(err) return err;
-    console.log(products);
     Order.find({status : "pending"}, function(err, orders) {
       if (err) return err;
 

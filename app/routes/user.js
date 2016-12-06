@@ -29,7 +29,6 @@ app.get('/role/:username/:role', function (req, res){
       if(user){
         if(role == 'admin'){
           user.update({role:role}, function(err, user){
-          console.log(user);
             if(err) return(err)
             res.redirect('/dashboard');
           });
@@ -43,16 +42,13 @@ app.get('/role/:username/:role', function (req, res){
 
   //admin routes for deleting users
   app.get('/deleteuser/:id', function(req, res){
-    console.log(req.params.id);
     User.findById(req.params.id, function(err, user) {
      if (err) throw err;
-     console.log(user);
      // delete user
      user.remove(function(err) {
     if (err) throw err;
 
      res.redirect('/dashboard');
-     console.log("deleted succesfully")
      //res.send( 'user removed succesfully... PRESS f5 to refresh' );
 });
 });

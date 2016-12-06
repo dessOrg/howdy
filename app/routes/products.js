@@ -28,7 +28,6 @@ module.exports = function(app) {
 
           Product.find({category : category}, function(err, hproducts) {
             if (err) return err;
-            console.log(hproducts);
             res.render('pages/product.ejs',{
               products : null,
               hproduct : hproduct,
@@ -42,7 +41,7 @@ module.exports = function(app) {
           var cart = new Cart(req.session.cart);
           var products = cart.generateArray();
           var category = hproduct.category;
-          console.log(category);
+
           Product.find({category : category}, function(err, hproducts) {
             if (err) return err;
             res.render('pages/product.ejs',{
@@ -62,8 +61,6 @@ module.exports = function(app) {
       var id = req.params.id;
       Product.findById(id, function(err, product){
         if(err) return err;
-        console.log(product);
-
         Order.find({status : "pending"}, function(err, orders) {
           if (err) return err;
 
@@ -107,8 +104,7 @@ module.exports = function(app) {
 
     product.save(function(err, product){
       if(err) return err;
-      console.log(product);
-      console.log(product.id);
+
       res.redirect('/add-item');
     });
 
@@ -119,10 +115,10 @@ module.exports = function(app) {
     app.post('/updatepro/:id', function(req, res){
       //var id = req.body.id;
       var product = new Product();
-      console.log(req.params.id);
+
       Product.findById(req.params.id, function(err, product){
         if(err) return err;
-         console.log(product);
+
          product.name = req.body.name,
          product.category = req.body.category,
          product.subCategory = req.body.subCategory,
@@ -131,11 +127,10 @@ module.exports = function(app) {
          product.note = req.body.note
         product.save(function(err){
           if(err) return err;
-           console.log("updated succesfully");
+
            var id = req.params.id;
            Product.findById(id, function(err, product){
              if(err) return err;
-             console.log(product);
 
              res.render('admin/admin-product.ejs', {
                product : product
@@ -147,15 +142,12 @@ module.exports = function(app) {
 
     //admin routes for deleting products
     app.get('/deletepro/:id', function(req, res){
-      console.log(req.params.id);
+
       Product.findById(req.params.id, function(err, product) {
        if (err) throw err;
-       console.log(product);
        // delete product
        product.remove(function(err) {
       if (err) throw err;
-
-       console.log("deleted succesfully")
        res.send( 'Product removed succesfully... PRESS f5 to refresh' );
   });
 });

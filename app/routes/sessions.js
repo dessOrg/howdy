@@ -12,7 +12,6 @@ module.exports =function(app) {
     }else {
       var cart = new Cart(req.session.cart);
       var products = cart.generateArray();
-      console.log(products);
       res.render('pages/login.ejs', {products, totalPrice: cart.totalPrice});
     }
 
@@ -23,13 +22,10 @@ module.exports =function(app) {
         passport.authenticate('local', function(err,user){
           if(err) return err;
           if(!user){
-            console.log('Not a user');
             return res.redirect('/login');
           }
           req.login(user, function(err){
             if(err) return err;
-
-            console.log(req.user);
             res.redirect(req.session.returnTo || '/use')
             delete req.session.returnTo;
 
