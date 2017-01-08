@@ -28,12 +28,18 @@ module.exports = function(app) {
 
           Product.find({category : category}, function(err, hproducts) {
             if (err) return err;
-            res.render('pages/product.ejs',{
-              products : null,
-              hproduct : hproduct,
-              hproducts : hproducts
+
+            Product.find({category : "bestselling"}, function(err, bestselling){
+              if (err) return err;
+              res.render('pages/product.ejs',{
+                products : null,
+                hproduct : hproduct,
+                hproducts : hproducts,
+                bestselling : bestselling
+              });
             });
-          })
+
+          });
         });
       }else {
         Product.findById(id, function(err, hproduct){
@@ -44,14 +50,19 @@ module.exports = function(app) {
 
           Product.find({category : category}, function(err, hproducts) {
             if (err) return err;
+
+          Product.find({category : "bestselling"}, function(err, bestselling) {
+              if (err) return err;
+
             res.render('pages/product.ejs',{
               products,
               totalPrice: cart.totalPrice,
               hproduct : hproduct,
-              hproducts : hproducts
+              hproducts : hproducts,
+              bestselling : bestselling
             });
-          })
-
+          });
+         });
         });
       }
 
@@ -148,6 +159,7 @@ module.exports = function(app) {
        // delete product
        product.remove(function(err) {
       if (err) throw err;
+       req.session.oldUrl = req.url;
        res.send( 'Product removed succesfully... PRESS f5 to refresh' );
   });
 });

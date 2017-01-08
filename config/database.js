@@ -1,7 +1,7 @@
 module.exports=[
 	{
     'environment': 'production',
-    'url'       : 'mongodb://dessHub:test1ng@ds119578.mlab.com:19578/howdys',
+    'url'       : 'mongodb://localhost/howdys',
     'secret'    : 'anystringoftext'
   },
 
