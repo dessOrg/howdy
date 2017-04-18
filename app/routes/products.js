@@ -1,7 +1,6 @@
 // app/routes/projects.js
 var express = require('express');
 var app = express();
-
 var url = require('url');
 var base64url = require('base64url');
 var multer = require('multer');
